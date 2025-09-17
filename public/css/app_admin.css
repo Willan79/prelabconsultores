@@ -1,0 +1,75 @@
+/* Public CSS for Admin Panel */
+/*##############################################################*/
+/*dashboar*/
+body {
+    background: rgb(240, 240, 240);
+}
+
+.graficos {
+    margin-top: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-admin {
+    background: midnightblue;
+}
+
+.header-tex {
+    color: white;
+}
+
+.nav-lateral {
+    position: fixed;
+    margin-top: 4rem;
+}
+
+.nav-lateral a {
+    color: white;
+    text-decoration: none;
+}
+
+/*##############################################################*/
+.mensaje {
+    color: blue;
+    padding: 7px;
+}
+
+.magen-top-admin {
+    margin-top: 7rem;
+}
+
+.nueva-empresa-campos {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-control,
+.form-select {
+    background: rgb(233, 232, 232);
+}
+
+.tabla-empresa-td td {
+
+    white-space: nowrap; /* Evita saltos de línea */
+    overflow: hidden; /* Oculta el desbordamiento */
+    text-overflow: ellipsis; /* Muestra los "..." */
+    max-width: 150px;
+}
+
+.grafico-panel{
+    margin-top: 5rem;
+
+}
+.grafico-panel a{
+    color: black;
+}
+
+.grafico-panel a:hover{
+    color: dimgray;
+}
+
+.logo{
+    border-radius: 5px;
+}
