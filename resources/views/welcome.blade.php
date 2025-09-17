@@ -53,7 +53,7 @@
     <section class="seccion-consultorias container my-5 text-center">
 
         <article class="row mb-5">
-            <ul class="col-md-6 mb-4">
+            <ul class="col-md-6 mb-4 listas">
                 <h5 class="">CONSULTORÍA EN SEGURIDAD Y SALUD EN EL TRABAJO (SST)</h5>
                 <li><i class="bi bi-building-fill-check" aria-hidden="true"></i> Consultoría en el diseño e implementación del SGSST.</li>
                 <li><i class="bi bi-file-earmark-text-fill" aria-hidden="true"></i> Auditorías en el SG-SST con base en el Decreto 1072 y
@@ -73,7 +73,7 @@
             <div class="fade-in col-md-6 mb-4 mb-md-0">
                 <img class="img-fluid" src="{{ asset('img/img-4.webp') }}" alt="Asesoría PESV">
             </div>
-            <ul class="col-md-6">
+            <ul class="col-md-6 listas">
                 <h5 class=" ">CONSULTORÍA PLAN ESTRATÉGICO DE SEGURIDAD VIAL (PESV)</h5>
                 <li><i class="bi bi-building-fill-check" aria-hidden="true"></i> Consultoría en el diseño e implementación
                     del PESV.</li>

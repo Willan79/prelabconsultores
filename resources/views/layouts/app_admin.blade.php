@@ -52,11 +52,7 @@
                         <i class="bi bi-journal-check"></i> Auditorías
                     </a>
                 </li>
-                <li class="nav-item mb-2">
-                    <a href="{_{ route('tabla-pdf') }_}" class="btn btn-outline-primary w-100">
-                        <i class="bi bi-journal-check"></i> Documentos
-                    </a>
-                </li>
+                
                 <li class="nav-item mb-2">
                     <a href="{{ route('tabla_user') }}" class="btn btn-outline-primary w-100">
                         <i class="bi bi-people-fill"></i> Usuarios

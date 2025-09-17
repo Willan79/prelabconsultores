@@ -25,6 +25,65 @@ class TrabajoService
         if ($imagenes) { // Guardar las imágenes si fueron subidas
             $this->guardarImagenes($trabajo, $imagenes);
         }
+        return $trabajo;
+    }
+
+    //TODO Actualizar un trabajo existente
+    public function actualizarTrabajo(Trabajo $trabajo, array $data, $imagenes = null)
+    {
+        $trabajo->update([
+            'titulo' => $data['titulo'],
+            'descripcion' => $data['descripcion'],
+            'empresa_id' => $data['empresa_id'],
+        ]);
+
+        if ($imagenes) {
+            $this->guardarImagenes($trabajo, $imagenes);
+        }
+
+        return $trabajo;
+    }
+    //TODO Eliminar un trabajo y sus imágenes asociadas
+    public function eliminarTrabajo(Trabajo $trabajo)
+    {
+        $trabajo->delete();
+    }
+    //TODO Eliminar una imagen específica asociada a un trabajo
+    public function eliminarImagen(Imagen $imagen)
+    {
+        Storage::disk('public')->delete($imagen->ruta);
+        $imagen->delete();
+    }
+    //TODO Guardar imágenes asociadas a un trabajo
+    private function guardarImagenes(Trabajo $trabajo, $imagenes)
+    {
+        foreach ($imagenes as $imagen) {
+            $path = $imagen->store('trabajos', 'public');
+            $trabajo->imagens()->create(['ruta' => $path]);
+        }
+    }
+}
+
+
+
+
+
+
+class TrabajoServices
+{
+
+    // Crear un nuevo trabajo
+    public function crearTrabajo(array $data, $imagenes = null)
+    {
+        $trabajo = Trabajo::create([
+            'titulo' => $data['titulo'],
+            'descripcion' => $data['descripcion'],
+            'empresa_id' => $data['empresa_id'],
+        ]);
+
+        if ($imagenes) { // Guardar las imágenes si fueron subidas
+            $this->guardarImagenes($trabajo, $imagenes);
+        }
 
         return $trabajo;
     }

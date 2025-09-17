@@ -117,7 +117,15 @@
     gap: 1rem;
     font-style: italic;
     text-align: justify;
+
 }
+
+.seccion-consultorias .listas {
+    list-style-type: none; /* Elimina las viñetas */
+    padding-left: 0; /* Elimina el padding izquierdo */
+}
+
+
 .seccion-consultorias h5 {
     color: var(--color-primario);
 }
