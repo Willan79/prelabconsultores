@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('contenido')
-    <div class="container my-5">
-        <div class="card">
+    <div class="container my-5 d-flex justify-content-center">
+        <div class="card col-lg-6">
             <div class="card-header">
                 <h3>Detalles de la Empresa</h3>
             </div>

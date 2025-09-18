@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="preload" href="{{ asset('img/inicio.webp') }}" as="image">
+
 </head>
 
 <body id="app">
@@ -38,11 +39,12 @@
                 </div>
             </div>
         </header>
+
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-lg shadow sticky-top">
             <div class="container">
                 <div class="trabajos btn btn-outline-warning">
-                    <a href="{{ route('trabajos.index') }}" >Nuestros trabajos</a>
+                    <a href="{{ route('trabajos.index') }}">Nuestros trabajos</a>
                 </div>
                 <!-- Botón para mostrar el menú en móviles -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -52,6 +54,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse menu-overlay" id="menuNavegacion">
+
                     <ul class="navbar-nav ms-auto fw-bold">
                         @auth
                             <li class="nav-item">
@@ -94,7 +97,6 @@
                 </div>
             </div>
         </nav>
-
         <!-- MAIN -->
         <main class="flex-grow-1"> <!-- Hace que el main crezca para ocupar el espacio disponible -->
             @yield('contenido')
@@ -105,8 +107,7 @@
         </footer>
 
         @yield('scripts')
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer>
-        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
 
 
     </div>

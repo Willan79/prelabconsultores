@@ -21,7 +21,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//! Pendiente las rutas
 Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/tabla_user', [UserController::class, 'index'])->name('tabla_user');
@@ -43,17 +42,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     //!=================================================================================
     //
     Route::get('/auditorias', [AuditoriaController::class, 'index'])->name('auditorias');
-
     Route::get('/auditoria_crear', [AuditoriaController::class, 'create'])->name('auditoria_crear');
-
     Route::post('/auditoria_crear', [AuditoriaController::class, 'store'])->name('auditoria_crear');
-
     Route::get('/auditoria_edit/{id}/edit', [AuditoriaController::class, 'edit'])->name('auditorias_edit');
-
     Route::get('/auditorias/{id}', [AuditoriaController::class, 'show'])->name('auditoria_ver');
-
     Route::put('/auditorias/{auditoria}', [AuditoriaController::class, 'update'])->name('auditorias.update');
-
     Route::DELETE('/auditorias/{auditoria}', [AuditoriaController::class, 'destroy'])->name('auditorias.destroy');
     //
 
@@ -89,7 +82,8 @@ Route::middleware(['auth', 'role:cliente'])->group(function () {
     Route::get('/mi-empresa', [EmpresaController::class, 'showEmpresaCliente'])->name('empresa.cliente');
     // Route::get('/empresas/{empresa}/estandares', [EstandarController::class, 'index'])->name('empresas.estandares');
     Route::get('/mi-empresa/estandares', [EstandarController::class, 'indexCliente'])->name('empresa.estandares.cliente');
-    Route::get('/mi-empresa/estandares/{id}/descargar', [EstandarController::class, 'descargarCliente'])->name('estandares.descargar.cliente');
+    Route::get('/mi-empresa/{empresa}/estandares/{id}/descargar', [EstandarController::class, 'descargarCliente'])->name('estandares.descargar.cliente');
+
 });
 
 Route::get('/dashboard', function () {

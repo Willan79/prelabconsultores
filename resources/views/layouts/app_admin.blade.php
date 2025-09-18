@@ -19,6 +19,7 @@
 <body>
     <header class="header-admin p-3 fixed-top w-100 z-50 shadow">
         <div class="d-flex justify-content-between align-items-center">
+            <img src="{{ asset('img/FINAL.png') }}" alt="Logo" class="img-fluid rounded" style="max-height: 54px;">
             <h3 class="header-tex text-center fw-bold flex-grow-1 ">Panel admin @yield('titulo')</h3>
             <!-- Botón para mostrar el menú en móviles -->
             <button class="btn btn-outline-dark d-md-none me-3" type="button" data-bs-toggle="offcanvas"
@@ -52,7 +53,7 @@
                         <i class="bi bi-journal-check"></i> Auditorías
                     </a>
                 </li>
-                
+
                 <li class="nav-item mb-2">
                     <a href="{{ route('tabla_user') }}" class="btn btn-outline-primary w-100">
                         <i class="bi bi-people-fill"></i> Usuarios
@@ -132,8 +133,7 @@
         </main>
         @yield('scripts') <!-- Aquí se insertarán los scripts de cada vista -->
         <!-- Bootstrap JS (necesario para el menú lateral en móviles) -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer>
-        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
     </div>
 
 

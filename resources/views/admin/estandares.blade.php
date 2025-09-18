@@ -18,9 +18,11 @@
         </form>
 
         @if (session('success'))
-            <div class="mensaje alert alert-success text-center">
-                {{ session('success') }}
-            </div>
+            <x-alerta tipo="success" :mensaje="session('success')" />
+        @endif
+
+        @if ($errors->any())
+            <x-alerta tipo="danger" :mensaje="$errors->first()" />
         @endif
         {{-- Tabla de documentos --}}
         <table class="table table-bordered">

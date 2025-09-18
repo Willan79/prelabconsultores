@@ -3,6 +3,11 @@
 @section('contenido')
     <!-- Sección principal -->
     <section class="seccion-principal">
+        <div class="mx-4">
+            @if (session('success'))
+                <x-alerta tipo="success" :mensaje="session('success')" />
+            @endif
+        </div>
         <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
         <div class="conten position-relative p-4">
             <h1>BIENVENIDO A PRELAB CONSULTORES</h1>
@@ -55,13 +60,18 @@
         <article class="row mb-5">
             <ul class="col-md-6 mb-4 listas">
                 <h5 class="">CONSULTORÍA EN SEGURIDAD Y SALUD EN EL TRABAJO (SST)</h5>
-                <li><i class="bi bi-building-fill-check" aria-hidden="true"></i> Consultoría en el diseño e implementación del SGSST.</li>
-                <li><i class="bi bi-file-earmark-text-fill" aria-hidden="true"></i> Auditorías en el SG-SST con base en el Decreto 1072 y
+                <li><i class="bi bi-building-fill-check" aria-hidden="true"></i> Consultoría en el diseño e implementación
+                    del SGSST.</li>
+                <li><i class="bi bi-file-earmark-text-fill" aria-hidden="true"></i> Auditorías en el SG-SST con base en el
+                    Decreto 1072 y
                     Resolución 0312.</li>
-                <li><i class="bi bi-graph-up-arrow" aria-hidden="true"></i> Estrategias lúdicas en la implementación del SG-SST.</li>
-                <li><i class="bi bi-calendar2-week-fill" aria-hidden="true"></i> Reporte de evaluación de estándares mínimos ante el MINTRABAJO
+                <li><i class="bi bi-graph-up-arrow" aria-hidden="true"></i> Estrategias lúdicas en la implementación del
+                    SG-SST.</li>
+                <li><i class="bi bi-calendar2-week-fill" aria-hidden="true"></i> Reporte de evaluación de estándares mínimos
+                    ante el MINTRABAJO
                     y ARL, y diseño del plan de mejoramiento.</li>
-                <li><i class="bi bi-folder-check" aria-hidden="true"></i> Aplicación, intervención y seguimiento de batería de riesgo
+                <li><i class="bi bi-folder-check" aria-hidden="true"></i> Aplicación, intervención y seguimiento de batería
+                    de riesgo
                     psicosocial.</li>
             </ul>
             <div class="fade-in col-md-6">
@@ -73,15 +83,22 @@
             <div class="fade-in col-md-6 mb-4 mb-md-0">
                 <img class="img-fluid" src="{{ asset('img/img-4.webp') }}" alt="Asesoría PESV">
             </div>
-            <ul class="col-md-6 listas">
-                <h5 class=" ">CONSULTORÍA PLAN ESTRATÉGICO DE SEGURIDAD VIAL (PESV)</h5>
-                <li><i class="bi bi-building-fill-check" aria-hidden="true"></i> Consultoría en el diseño e implementación
-                    del PESV.</li>
-                <li><i class="bi bi-journal-arrow-down" aria-hidden="true"></i> Reporte del PESV ante la Superintendencia de Transporte
-                    (Formulario SISI/PESV).</li>
-                <li><i class="bi bi-file-earmark-text-fill" aria-hidden="true"></i> Auditoría en el PESV con base en la Resolución 40595.</li>
-                <li><i class="bi bi-graph-up-arrow"></i> Estrategias lúdicas en la implementación de la seguridad vial.</li>
-            </ul>
+
+            <div class="col-md-6">
+                <h5>CONSULTORÍA PLAN ESTRATÉGICO DE SEGURIDAD VIAL (PESV)</h5>
+                <ul class="listas">
+                    <li><i class="bi bi-building-fill-check" aria-hidden="true"></i> Consultoría en el diseño e
+                        implementación
+                        del PESV.</li>
+                    <li><i class="bi bi-journal-arrow-down" aria-hidden="true"></i> Reporte del PESV ante la
+                        Superintendencia de Transporte
+                        (Formulario SISI/PESV).</li>
+                    <li><i class="bi bi-file-earmark-text-fill" aria-hidden="true"></i> Auditoría en el PESV con base en la
+                        Resolución 40595.</li>
+                    <li><i class="bi bi-graph-up-arrow"></i> Estrategias lúdicas en la implementación de la seguridad vial.
+                    </li>
+                </ul>
+            </div>
         </article>
     </section>
 
@@ -102,8 +119,6 @@
             </ul>
         </article>
     </section>
-
-
 @endsection
 
 @section('footer')
@@ -129,7 +144,6 @@
     <div class="text-center text-white py-3">
         Copyright {{ now()->year }} © Todos los derechos Reservados | Prelabconsultores
     </div>
-
 @endsection
 
 @section('scripts')

@@ -5,17 +5,17 @@
 @section('contenido')
     <!-- Contenido principal -->
     <div class="magen-top-admin container">
-        <div class="d-flex gap-2">
-            <div>
-                <a href="{{ route('nueva_empresa') }}" class="btn btn-primary mb-1">Registrar Empresa</a>
-            </div>
-            {{-- Mensajes de éxito --}}
-            <x-alerta tipo="success" :mensaje="session('success')" />
-            {{-- Mensajes de error --}}
-            @if ($errors->any())
-                <x-alerta tipo="danger" :mensaje="$errors->first()" />
-            @endif
+
+        <div>
+            <a href="{{ route('nueva_empresa') }}" class="btn btn-primary mb-1">Registrar Empresa</a>
         </div>
+
+        <x-alerta tipo="success" :mensaje="session('success')" />
+        
+        @if ($errors->any())
+            <x-alerta tipo="danger" :mensaje="$errors->first()" />
+        @endif
+
 
         <div class="table-responsive">
             <table class="table table-bordered table-hover">

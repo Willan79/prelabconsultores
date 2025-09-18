@@ -13,8 +13,7 @@
                     <table class="table table-bordered">
                         <thead class="table-dark">
                             <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
+                                <th>Nombre del documento</th>
                                 <th>Fecha de creación</th>
                                 <th>Acción</th>
                             </tr>
@@ -22,7 +21,6 @@
                         <tbody>
                             @foreach ($estandares as $estandar)
                                 <tr>
-                                    <td>{{ $estandar->id }}</td>
                                     <td>{{ $estandar->nombre }}</td>
                                     <td>{{ $estandar->created_at->format('d/m/Y H:i') }}</td>
                                     {{-- Botón de descarga --}}
@@ -41,12 +39,4 @@
 
         </div>
     </div>
-@endsection
-@section('scripts')
-    <script>
-        // Ocultar mensaje después de 3 segundos
-        setTimeout(function() {
-            $('.mensaje').fadeOut('slow');
-        }, 3000);
-    </script>
 @endsection

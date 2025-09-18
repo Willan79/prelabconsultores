@@ -39,10 +39,10 @@ class EstandarController extends Controller
         return redirect()->back()->with('success', 'Estándar subido correctamente.');
     }
     //TODO Descargar un estándar (para clientes autenticados)
-    public function descargarCliente($id)
+    public function descargarCliente($empresaId, $id)
     {
         try {
-            return $this->estandarService->descargar(null, $id, auth()->user());
+            return $this->estandarService->descargar($empresaId, $id, auth()->user());
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());
         }

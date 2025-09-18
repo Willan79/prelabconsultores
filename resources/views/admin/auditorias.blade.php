@@ -6,13 +6,9 @@
 
 @section('contenido')
     <div class="container magen-top-admin">
-        <div class="d-flex gap-2 ">
-            <a href="{{ route('auditoria_crear') }}" class="btn btn-primary mb-3">Nueva Auditoría</a>
 
-            @if (session('success'))
-                <div class="mensaje alert alert-success">{{ session('success') }}</div>
-            @endif
-        </div>
+        <a href="{{ route('auditoria_crear') }}" class="btn btn-primary mb-3">Nueva Auditoría</a>
+        <x-alerta tipo="success" :mensaje="session('success')" />
 
         <table class="table table-bordered table-hover">
             <thead class="table-secondary">
@@ -47,13 +43,15 @@
                                 }
                             @endphp
 
-                            <span class="{{ $color }} fw-bold">{{ ucfirst(str_replace('_', ' ', $auditoria->estado)) }}</span>
+                            <span
+                                class="{{ $color }} fw-bold">{{ ucfirst(str_replace('_', ' ', $auditoria->estado)) }}</span>
                         </td>
 
                         <td>
 
                             <a href="{{ route('auditoria_ver', $auditoria->id) }}" class="btn btn-outline-info btn-sm">Ver</a>
-                            <a href="{{ route('auditorias_edit', $auditoria) }}" class="btn btn-outline-warning btn-sm">Editar</a>
+                            <a href="{{ route('auditorias_edit', $auditoria) }}"
+                                class="btn btn-outline-warning btn-sm">Editar</a>
                             <form action="{{ route('auditorias.destroy', $auditoria) }}" method="POST" class="d-inline"
                                 onsubmit="return confirm('¿Estás seguro de eliminar esta auditoría?')">
                                 @csrf @method('DELETE')

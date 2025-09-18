@@ -125,7 +125,6 @@
     padding-left: 0; /* Elimina el padding izquierdo */
 }
 
-
 .seccion-consultorias h5 {
     color: var(--color-primario);
 }
@@ -357,8 +356,5 @@ label {
     object-fit: cover; /* recorta para mantener proporción */
 }
 
-#carouselTrabajo {
-    background: var(--color-primario);
 
-}
 /* ######### Fin <i class="bi bi-justify"></i> ############ */

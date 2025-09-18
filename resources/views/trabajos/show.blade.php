@@ -5,7 +5,7 @@
     @if ($trabajo->imagens->isNotEmpty())
         {{-- Verificar si hay imágenes --}}
 
-        <div class="container my-5">
+        <div class="container my-5 col-lg-8">
             @if (session('success'))
                 <x-alerta tipo="success" :mensaje="session('success')" />
             @endif
@@ -17,11 +17,11 @@
             <p class="mb-3">{{ $trabajo->descripcion }}</p>
             <p><strong>Empresa:</strong> {{ $trabajo->empresa->nombre }}</p>
 
-            <div id="carouselTrabajo" class="carousel slide mb-4" data-bs-ride="carousel">
+            <div id="carouselTrabajo" class="carousel slide mb-4 shadow-lg " data-bs-ride="carousel">
                 <div class="carousel-inner">
                     @foreach ($trabajo->imagens as $key => $imagen)
                         <div class="carousel-item {{ $key === 0 ? 'active' : '' }}"> {{-- Activar la primera imagen --}}
-                            <img src="{{ asset('storage/' . $imagen->ruta) }}" class="d-block mx-auto rounded img-carousel"
+                            <img src="{{ asset('storage/' . $imagen->ruta) }}" class="d-block mx-auto rounded img-carousel object-fit-cover"  style="height:300px;"
                                 alt="{{ $trabajo->titulo }}">
                         </div>
                     @endforeach
@@ -29,11 +29,11 @@
 
                 {{-- Controles --}}
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselTrabajo" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
+                    <i class="bi bi-arrow-left-circle fs-2 text-secondary"></i>
                     <span class="visually-hidden">Anterior</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselTrabajo" data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
+                    <i class="bi bi-arrow-right-circle fs-2 text-secondary"></i>
                     <span class="visually-hidden">Siguiente</span>
                 </button>
             </div>

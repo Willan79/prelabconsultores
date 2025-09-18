@@ -16,7 +16,8 @@ class Empresa extends Model
         'razon_social',
         'num_trabajadores',
         'ciudad',
-        'direccion'
+        'direccion',
+        'user_id'
     ];
 
     //Relación: una empresa puede tener muchas auditorías

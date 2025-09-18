@@ -79,8 +79,8 @@ class EmpresaController extends Controller
     public function showEmpresaCliente() //TODO Mostrar la empresa asociada al usuario autenticado
     {
         $empresa = Auth::user()->empresa;
-        if (!$empresa) {
-            return redirect()->back()->with('error', 'No tienes una empresa asignada.');
+        if (!$empresa) {// Si el usuario no tiene una empresa asociada
+            return redirect()->back()->with('success', 'No tienes una empresa asignada.');
         }
         return view('empresas.show', compact('empresa'));
     }
@@ -91,3 +91,4 @@ class EmpresaController extends Controller
         return redirect()->route('tabla_empresas')->with('success', 'Empresa eliminada correctamente.');
     }
 }
+
