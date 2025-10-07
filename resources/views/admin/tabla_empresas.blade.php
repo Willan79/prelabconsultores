@@ -11,11 +11,10 @@
         </div>
 
         <x-alerta tipo="success" :mensaje="session('success')" />
-        
+
         @if ($errors->any())
             <x-alerta tipo="danger" :mensaje="$errors->first()" />
         @endif
-
 
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
@@ -32,7 +31,7 @@
                 <tbody>
                     @foreach ($empresas as $empresa)
                         <tr class="tabla-empresa-td align-middle">
-                            <td>{{ $empresa->id }}</td>
+                            <td>{{ "00" . $empresa->id }}</td>
                             <td>{{ $empresa->nombre }}</td>
                             <td>{{ $empresa->nit }}</td>
                             <td>{{ $empresa->num_trabajadores }}</td>
@@ -41,7 +40,6 @@
                             <td class="{{ $empresa->users ? '' : 'text-danger' }}">
                                 {{ $empresa->users ? $empresa->users->name . ' ' . $empresa->users->apellido : 'Sin asignar' }}
                             </td>
-
 
                             <td class="text-center w-25">
                                 <a href="{{ route('empresa_edit', $empresa->id) }}"

@@ -19,6 +19,7 @@ class UserController extends Controller
         $usuarios = $this->userService->obtenerTodos();
         return view('admin.tabla_user', compact('usuarios'));
     }
+
     //TODO Editar rol de usuario
     public function edit($id)
     {
@@ -37,6 +38,7 @@ class UserController extends Controller
         return redirect()->route('tabla_user')
             ->with('success', 'Rol actualizado correctamente.');
     }
+
     //TODO Eliminar usuario
     public function destroy($id)
     {

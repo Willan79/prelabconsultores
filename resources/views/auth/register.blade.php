@@ -12,7 +12,6 @@
 
             <form action="{{ route('register') }}" method="POST">
                 @csrf <!-- Token de seguridad -->
-
                 <!-- Nombre -->
                 <div class="mb-2">
                     <div class="d-flex align-items-center gap-2">
@@ -21,7 +20,6 @@
                             name="name" placeholder="Nombre" value="{{ old('name') }}" required>
                     </div>
                 </div>
-
                 <!-- Apellido -->
                 <div class="mb-2">
                     <div class="d-flex align-items-center gap-2">
@@ -30,7 +28,6 @@
                             name="apellido" placeholder="Apellido" value="{{ old('apellido') }}" required>
                     </div>
                 </div>
-
                 <!-- Email -->
                 <div class="mb-2">
                     <div class="d-flex align-items-center gap-2">
@@ -42,7 +39,6 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-
                 <!-- Dirección -->
                 <div class="mb-2">
                     <div class="d-flex align-items-center gap-2">
@@ -51,7 +47,6 @@
                             name="direccion" placeholder="Dirección Completa" value="{{ old('direccion') }}" required>
                     </div>
                 </div>
-
                 <!-- Teléfono -->
                 <div class="mb-2">
                     <div class="d-flex align-items-center gap-2">
@@ -60,7 +55,6 @@
                             name="telefono" placeholder="Teléfono" value="{{ old('telefono') }}" required>
                     </div>
                 </div>
-
                 <!-- Contraseña -->
                 <div class="mb-2">
                     <div class="d-flex align-items-center gap-2">
@@ -68,9 +62,7 @@
                         <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
                             name="password" placeholder="Contraseña" required>
                     </div>
-
                 </div>
-
                 <!-- Confirmar Contraseña -->
                 <div class="mb-2">
                     <div class="d-flex align-items-center ">
@@ -82,7 +74,6 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-
                 <!-- Botón de enviar -->
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary ">Registrar</button>

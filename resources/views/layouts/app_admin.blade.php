@@ -14,6 +14,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{{ asset('css/app_admin.css') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
 </head>
 
 <body>
@@ -62,7 +63,7 @@
 
                 <li class="nav-item mb-2">
                     <a href="{{ route('trabajos.index') }}" class="btn btn-outline-primary w-100">
-                        <i class="bi bi-people-fill"></i> Trabajos
+                        <i class="bi bi-file-earmark-font"></i> Trabajos
                     </a>
                 </li>
 

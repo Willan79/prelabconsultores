@@ -52,15 +52,14 @@
         {{-- Mostrar imágenes actuales con opción para eliminar --}}
         @if ($trabajo->imagens && $trabajo->imagens->count() > 0)
             {{-- Verificar si hay imágenes --}}
-
             <p class="mt-2">Imágenes actuales:</p>
-            <div class="d-flex flex-wrap gap-2"> {{-- Contenedor flexible para las imágenes --}}
+            <div class="d-flex flex-wrap gap-2">
                 {{-- Iterar sobre las imágenes del trabajo --}}
                 @foreach ($trabajo->imagens as $imagen)
-                    <div class="position-relative d-inline-block"> {{-- Contenedor relativo para el botón de eliminar --}}
+                    <div class="position-relative d-inline-block">
                         {{-- -- Contenedor para cada imagen --}}
                         <img src="{{ asset('storage/' . $imagen->ruta) }}" alt="Imagen del trabajo" class="img-thumbnail"
-                            style="max-width: 150px;"> {{-- -- Imagen del trabajo - --}}
+                            style="max-width: 150px;"> 
 
                         {{-- Botón para eliminar --}}
                         <form action="{{ route('imagenes.destroy', $imagen->id) }}" method="POST"

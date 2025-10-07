@@ -48,7 +48,6 @@
                         </td>
 
                         <td>
-
                             <a href="{{ route('auditoria_ver', $auditoria->id) }}" class="btn btn-outline-info btn-sm">Ver</a>
                             <a href="{{ route('auditorias_edit', $auditoria) }}"
                                 class="btn btn-outline-warning btn-sm">Editar</a>

@@ -22,13 +22,13 @@ class EmpresaController extends Controller
         return view('admin.tabla_empresas', compact('empresas'));
     }
 
-    public function create()//TODO Mostrar formulario para crear una nueva empresa
+    public function create() //TODO Mostrar formulario para crear una nueva empresa
     {
         $usuarios = User::all();
         return view('admin.nueva_empresa', compact('usuarios'));
     }
 
-    public function store(Request $request)//TODO Almacenar una nueva empresa
+    public function store(Request $request) //TODO Almacenar una nueva empresa
     {
         $data = $request->validate([
             'nombre' => 'required|string|max:255',
@@ -45,7 +45,8 @@ class EmpresaController extends Controller
         return redirect()->route('tabla_empresas')->with('success', 'Empresa registrada con éxito.');
     }
 
-    public function show($id)//TODO Mostrar detalles de una empresa específica
+    //TODO Mostrar detalles de una empresa específica
+    public function show($id)
     {
         $empresa = $this->empresaService->obtenerEmpresa($id);
         return view('empresas.show', compact('empresa'));
@@ -59,7 +60,7 @@ class EmpresaController extends Controller
         return view('admin.empresa_edit', compact('empresa', 'usuarios'));
     }
 
-    public function update(Request $request, $id)//TODO Actualizar una empresa existente
+    public function update(Request $request, $id) //TODO Actualizar una empresa existente
     {
         $data = $request->validate([
             'nombre' => 'required|string|max:255',
@@ -79,11 +80,12 @@ class EmpresaController extends Controller
     public function showEmpresaCliente() //TODO Mostrar la empresa asociada al usuario autenticado
     {
         $empresa = Auth::user()->empresa;
-        if (!$empresa) {// Si el usuario no tiene una empresa asociada
+        if (!$empresa) { // Si el usuario no tiene una empresa asociada
             return redirect()->back()->with('success', 'No tienes una empresa asignada.');
         }
         return view('empresas.show', compact('empresa'));
     }
+
 
     public function destroy($id) //TODO Eliminar una empresa
     {
@@ -91,4 +93,3 @@ class EmpresaController extends Controller
         return redirect()->route('tabla_empresas')->with('success', 'Empresa eliminada correctamente.');
     }
 }
-

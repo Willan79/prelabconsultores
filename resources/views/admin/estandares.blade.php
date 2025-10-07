@@ -24,22 +24,22 @@
         @if ($errors->any())
             <x-alerta tipo="danger" :mensaje="$errors->first()" />
         @endif
-        {{-- Tabla de documentos --}}
+        {{-- Tabla de estándares --}}
         <table class="table table-bordered">
             @if ($estandares->isEmpty())
                 <!-- Si no hay estándares -->
                 <tr>
-                    <td colspan="3" class="text-center">No hay estandares registrados.</td>
+                    <td colspan="3" class="text-center">No hay archivos registrados.</td>
                 </tr>
             @else
                 {{-- Fila con total de estándares --}}
                 <h5 class=" fw-bold">
-                    <p  class="">Total de Estándares: {{ $estandares->count() }}</p>
+                    <p  class="">Total de Archivos: {{ $estandares->count() }}</p>
                 </h5>
             @endif
             <thead class="thead-dark">
                 <tr>
-                    <th>Nombre del Estándar</th>
+                    <th>Nombre del Archivo</th>
                     <th>Subido</th>
                     <th>Subido por</th>
                     <th>Acciones</th>
@@ -72,8 +72,6 @@
                         </td>
                     </tr>
                 @endforeach
-
-
             </tbody>
         </table>
     </div>

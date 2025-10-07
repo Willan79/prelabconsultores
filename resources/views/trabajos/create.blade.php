@@ -6,7 +6,7 @@
 
 @section('contenido')
     <div class="container magen-top-admin m-y5 d-flex flex-column align-items-center">
-        <h2 class="mb-4">Registrar Trabajo Realizado</h2>
+        <h2 class="mb-4">Compartir un Trabajo Realizado</h2>
 
         {{-- Mensajes de error globales --}}
         @if ($errors->any())

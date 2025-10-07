@@ -1,7 +1,6 @@
 
 @extends('layouts.app_admin')
 
-
 @section('contenido')
     <!-- Contenedor principal -->
     <div class="graficos  d-flex flex-column justify-content-center">

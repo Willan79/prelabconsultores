@@ -6,18 +6,14 @@
 
 @section('contenido')
     <div class="container magen-top-admin d-flex justify-content-center align-items-center">
-
         <div class="card shadow-lg p-2 col-md-10 col-lg-6" id="login-bg">
-
             <div class="card-body">
-
                 <div class="d-flex justify-content-center gap-4 mb-2">
                     <img class="logo img-fluid " src="{{ asset('img/FINAL.png') }}" alt="Logo" style="max-height: 50px;">
                 </div>
 
                 <form action="{{ route('nueva_empresa') }}" method="POST" enctype="multipart/form-data">
                     @csrf <!-- Token de seguridad -->
-
                     <!-- Nombre -->
                     <div class="mb-2">
                         <div class="d-flex align-items-center gap-2">
@@ -26,7 +22,6 @@
                                 name="nombre" placeholder="Nombre de la empresa" value="{{ old('nombre') }}" required>
                         </div>
                     </div>
-
                     <!-- nit -->
                     <div class="mb-2">
                         <div class="d-flex align-items-center gap-2">
@@ -35,10 +30,7 @@
                                 name="nit" placeholder="Nit" value="{{ old('nit') }}" required>
                         </div>
                     </div>
-
-
                     <!-- razon_social -->
-
                     <div class="mb-2">
                         <div class="d-flex align-items-center gap-2">
                             <label for="razon_social" class="form-label">Razon_social</label>
@@ -46,7 +38,6 @@
                                 name="razon_social" placeholder="Razon social" value="{{ old('razon_social') }}" required>
                         </div>
                     </div>
-
                     <!-- num_trabajadores -->
                     <div class="mb-2">
                         <div class="d-flex align-items-center gap-2">
@@ -55,7 +46,6 @@
                                 name="num_trabajadores" placeholder="numero de trabajadores" value="{{ old('num_trabajadores') }}" required>
                         </div>
                     </div>
-
                     <!-- ciudad -->
                     <div class="mb-2">
                         <div class="d-flex align-items-center gap-2">
@@ -64,9 +54,7 @@
                                 name="ciudad" placeholder="Ciudad" value="{{ old('ciudad') }}" required>
                         </div>
                     </div>
-
                     <!-- direccion -->
-
                     <div class="mb-2">
                         <div class="d-flex align-items-center gap-2">
                             <label for="direccion" class="form-label">Dirección</label>
@@ -87,7 +75,6 @@
                     @error('user_id')
                         <div class="alert alert-danger text-center p-2">{{ $message }}</div>
                     @enderror
-
                     <!-- Botón de Enviar -->
                     <div class="text-end">
                         <button type="submit" class="btn btn-primary">Guardar</button>

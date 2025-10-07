@@ -1,5 +1,3 @@
-<!--=================================================================================-->
-
 @extends('layouts.app_admin')
 
 @section('titulo')
@@ -8,14 +6,11 @@
 
 @section('contenido')
     <div class="container magen-top-admin d-flex justify-content-center align-items-center">
-
         <div class="form card shadow-lg col-md-10 col-lg-6" id="login-bg">
-
             <div class=" card-body ">
 
                 <div class="d-flex justify-content-center gap-4 mb-2">
                     <img class="logo img-fluid" src="{{ asset('img/FINAL.png') }}" alt="Logo" style="max-height: 50px;">
-
                 </div>
 
                 <form action="{{ route('auditoria_crear') }}" method="POST">
@@ -59,12 +54,10 @@
                         <label for="resultado" class="form-label">Resultado</label>
                         <textarea name="resultado" class="form-control">{{ old('resultado') }}</textarea>
                     </div>
-
                     <div class="mb-3 d-flex align-items-center gap-2">
                         <label for="observaciones" class="form-label">Observaciones</label>
                         <textarea name="observaciones" class="form-control">{{ old('observaciones') }}</textarea>
                     </div>
-
                     <button type="submit" class="btn btn-success">Guardar</button>
                     <a href="{{ route('auditorias') }}" class="btn btn-secondary">Cancelar</a>
                 </form>

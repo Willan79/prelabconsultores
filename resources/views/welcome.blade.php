@@ -58,7 +58,7 @@
     <section class="seccion-consultorias container my-5 text-center">
 
         <article class="row mb-5">
-            <ul class="col-md-6 mb-4 listas">
+            <ul class="col-md-6 mb-4 listas p-2">
                 <h5 class="">CONSULTORÍA EN SEGURIDAD Y SALUD EN EL TRABAJO (SST)</h5>
                 <li><i class="bi bi-building-fill-check" aria-hidden="true"></i> Consultoría en el diseño e implementación
                     del SGSST.</li>
@@ -125,9 +125,7 @@
     <!-- Barra de Contactos -->
     <section class="barra-contacto ">
         <div class="contacto">
-            <div>
-                <i class="bi bi-telephone-fill"></i>
-            </div>
+            <i class="bi bi-telephone-fill"></i>
             <p>
                 Línea de atención al cliente</br>315 244 3063</br>314 738 9775
             </p>

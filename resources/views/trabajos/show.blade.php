@@ -2,9 +2,7 @@
 
 @section('contenido')
 
-    @if ($trabajo->imagens->isNotEmpty())
-        {{-- Verificar si hay imágenes --}}
-
+    @if ($trabajo->imagens->isNotEmpty()) {{-- Verificar si hay imágenes --}}
         <div class="container my-5 col-lg-8">
             @if (session('success'))
                 <x-alerta tipo="success" :mensaje="session('success')" />

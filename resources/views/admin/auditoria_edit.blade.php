@@ -7,11 +7,8 @@
 
 @section('contenido')
     <div class="container magen-top-admin d-flex justify-content-center align-items-center">
-
         <div class="form card shadow-lg p-2 col-md-10 col-lg-6" id="login-bg">
-
             <div class=" card-body ">
-
                 <form action="{{ route('auditorias.update', $auditoria) }}" method="POST">
                     @csrf
                     @method('PUT')

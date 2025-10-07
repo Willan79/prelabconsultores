@@ -9,7 +9,7 @@
     position: relative;
     z-index: 2;
 }
-.trabajos a{
+.trabajos a {
     text-decoration: none;
     color: var(--color-base);
     font-weight: bold;
@@ -27,16 +27,13 @@
 .navbar-nav a:hover {
     color: var(--color-secundario);
 }
-
 .navbar-nav button {
     color: red;
     font-size: larger;
 }
-
 .navbar-nav button:hover {
     color: darkred;
 }
-
 /*############################ welcome.blade.php ################################*/
 .seccion-principal {
     padding-top: 2rem;
@@ -47,21 +44,18 @@
     background-repeat: no-repeat;
     color: var(--color-primario);
 }
-
 .seccion-principal .conten {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
 }
-
 .seccion-principal span {
     font-size: 3rem;
     font-style: italic;
     width: 40%;
     text-align: left;
 }
-
 .barra-especialidades {
     background: var(--color-primario);
     height: 6rem;
@@ -86,16 +80,14 @@
 .seccion-presentacion h3 {
     color: var(--color-primario);
 }
-
 .seccion-presentacion img {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-right: 3px solid orange; /* Borde derecho  */
-    border-bottom: 3px solid orange; /* Borde inferior  */
-    padding: 10px; /* Opcional, solo para que se vea mejor */
+    border-right: 3px solid orange;
+    border-bottom: 3px solid orange;
+    padding: 10px;
 }
-
 .barra-asesoria {
     background: var(--color-primario);
     color: var(--color-base);
@@ -117,14 +109,11 @@
     gap: 1rem;
     font-style: italic;
     text-align: justify;
-
 }
-
 .seccion-consultorias .listas {
-    list-style-type: none; /* Elimina las viñetas */
-    padding-left: 0; /* Elimina el padding izquierdo */
+    list-style-type: none;
+    padding-left: 0;
 }
-
 .seccion-consultorias h5 {
     color: var(--color-primario);
 }
@@ -144,10 +133,7 @@
     text-align: center;
     align-items: center;
 }
-
 .barra-contacto {
-    /*background: var(--color-base);*/
-
     height: auto;
     padding: 1rem 0 1rem 0;
     gap: 1rem;
@@ -155,7 +141,6 @@
     justify-content: center;
     align-items: center;
 }
-
 .contacto {
     color: var(--color-base);
     padding: 1rem;
@@ -165,7 +150,6 @@
     align-items: center;
     gap: 1rem;
 }
-
 .contacto i {
     font-size: 2rem;
     display: flex;
@@ -174,7 +158,6 @@
     border-radius: 50%;
     border: 2px solid yellow;
 }
-
 .pie-decorativo {
     height: 30rem;
     background-image: url("/img/footer.webp");
@@ -183,26 +166,16 @@
     background-repeat: no-repeat;
     margin: 0 4rem 0 4rem;
 }
-
 /*############################### Formularios ###############################*/
-
 .form {
     margin-top: 4rem;
 }
 .form-control {
     background: rgb(224, 223, 223);
 }
-
 label {
     width: 20%;
 }
-/*
-.texto p {
-    color: var(--color-primario);
-    font-style: italic;
-    font-size: large;
-} */
-
 .footer {
     background: rgb(6, 6, 62);
 }
@@ -291,6 +264,7 @@ label {
     .barra-contacto {
         padding: 0.5rem;
         display: flex;
+        text-align: center;
         flex-direction: column;
     }
 
@@ -311,13 +285,20 @@ label {
         width: 40%;
     }
 
+    .pie-decorativo {
+        height: 10rem;
+        margin: 0.5rem ;
+    }
+
     .menu-overlay {
         /* estilos para el menú desplegable */
         position: absolute;
         top: 100%; /* justo debajo de la navbar */
         left: 20%;
         width: 35%;
-        background: var(--color-primario); /* mismo color que tu navbar (bg-primary u otro) */
+        background: var(
+            --color-primario
+        ); /* mismo color que tu navbar (bg-primary u otro) */
         z-index: 1000;
         padding: 1rem 0;
         border-radius: 0 0 1rem 1rem;
@@ -337,7 +318,9 @@ label {
         top: 100%; /* justo debajo de la navbar */
         left: 70%;
         width: 35%;
-        background: var(--color-primario); /* mismo color que tu navbar (bg-primary u otro) */
+        background: var(
+            --color-primario
+        ); /* mismo color que tu navbar (bg-primary u otro) */
         z-index: 1000;
         padding: 1rem;
         border-radius: 0 0 1rem 1rem;
@@ -355,6 +338,5 @@ label {
     max-height: 400px; /* alto máximo */
     object-fit: cover; /* recorta para mantener proporción */
 }
-
 
 /* ######### Fin <i class="bi bi-justify"></i> ############ */

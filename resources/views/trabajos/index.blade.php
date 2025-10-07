@@ -12,10 +12,10 @@
         @if (auth()->check() && auth()->user()->role === 'admin')
             <a href="{{ route('trabajos.create') }}" class="btn btn-outline-primary mb-3">Comparte un nuevo trabajo</a>
         @endif
+        
         {{-- Desde resources/views/components/alerta.blade.php --}}
-        {{-- Mensajes de éxito --}}
         <x-alerta tipo="success" :mensaje="session('success')" />
-        {{-- Mensajes de error --}}
+
         @if ($errors->any())
             <x-alerta tipo="danger" :mensaje="$errors->first()" />
         @endif
@@ -30,7 +30,7 @@
                 <div class="row">
                     @foreach ($trabajos as $trabajo)
                         <div class=" col-md-6 col-lg-4 ">
-                            <div class="card mb-4 shadow-lg">
+                            <div class="card mb-4 shadow-lg border-primary">
                                 {{-- Imagen del trabajo --}}
                                 @if ($trabajo->imagens->isNotEmpty())
                                     {{-- Mostrar solo la primera imagen --}}

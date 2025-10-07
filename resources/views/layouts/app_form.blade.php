@@ -1,5 +1,3 @@
-<!-- ################################################################################ -->
-
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 <!DOCTYPE html>
@@ -13,7 +11,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
 </head>
 
 <body id="app"> <!--  -->

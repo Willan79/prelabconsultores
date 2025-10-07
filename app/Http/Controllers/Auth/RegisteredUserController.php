@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -21,7 +22,7 @@ class RegisteredUserController extends Controller
     }
     //Gestionar una solicitud de registro entrante.
     // @throws \Illuminate\Validation\ValidationException
-    public function store(Request $request): RedirectResponse 
+    public function store(Request $request):RedirectResponse
     {
         //Validación
         $this->validate($request, [
@@ -63,5 +64,14 @@ class RegisteredUserController extends Controller
         }
 
         return redirect()->intended('/');
+
+        //! return de prueba en Thunder Client
+        /*
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => 'Usuario registrado correctamente',
+                'user' => $user
+            ], 201);
+        } */
     }
 }
