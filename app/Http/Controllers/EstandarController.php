@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
-use App\Services\EstandarService;
+use app\Services\EstandarService;
 use Illuminate\Http\Request;
 
 class EstandarController extends Controller

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Empresa;
+use app\Models\User;
+use app\Models\Empresa;
 use Illuminate\Http\Request;
-use App\Services\AuditoriaService;
+use app\Services\AuditoriaService;
 
 class AuditoriaController extends Controller
 {

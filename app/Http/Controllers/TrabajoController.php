@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
-use App\Models\Trabajo;
-use App\Models\Imagen;
-use App\Models\Empresa;
+use app\Models\Trabajo;
+use app\Models\Imagen;
+use app\Models\Empresa;
 use Illuminate\Http\Request;
-use App\Services\TrabajoService;
+use app\Services\TrabajoService;
 
 class TrabajoController extends Controller
 {

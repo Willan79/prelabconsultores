@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
-use App\Models\User;
+use app\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Services\EmpresaService;
+use app\Services\EmpresaService;
 
 class EmpresaController extends Controller
 {

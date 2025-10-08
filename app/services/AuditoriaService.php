@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace app\Services;
 
-use App\Models\Auditoria;
+use app\Models\Auditoria;
 
 class AuditoriaService
 {
