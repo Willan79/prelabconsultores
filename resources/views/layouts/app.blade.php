@@ -1,3 +1,36 @@
+{{--
+|--------------------------------------------------------------------------
+| Layout principal de la aplicación
+|--------------------------------------------------------------------------
+| Archivo: resources/views/layouts/app.blade.php
+|
+| Descripción:
+| Plantilla base del sistema que define la estructura HTML global:
+| header, navbar, contenido dinámico y footer.
+|
+| Funciones:
+| - Carga de assets mediante Vite.
+| - Integración con Bootstrap 5 y Bootstrap Icons.
+| - Navbar dinámica según rol del usuario.
+| - Estructura responsive.
+|
+| Secciones Blade:
+| - @yield('titulo'): título dinámico de la página.
+| - @yield('contenido'): contenido principal.
+| - @yield('footer'): pie de página.
+| - @yield('scripts'): scripts específicos por vista.
+|
+| Dependencias:
+| - Laravel Blade
+| - Bootstrap 5
+| - Vite
+|
+| Autor: Willian Castro
+| Fecha: 2025
+|--------------------------------------------------------------------------
+--}}
+
+
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 <!DOCTYPE html>
@@ -6,34 +39,44 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"> <!-- Para compatibilidad con IE -->
-    <title>Prelab consultores @yield('titulo')</title>
+    <title>Prelab Consultores @yield('titulo')</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    {{-- SEO --}}
+    <meta name="description" content="Prelab Consultores - Gestión de trabajos y clientes">
+    <meta name="author" content="Prelab Consultores">
+
+    {{-- Estilos --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+    {{-- Recursos --}}
     <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
     <link rel="preload" href="{{ asset('img/inicio.webp') }}" as="image">
 
+    {{-- JS externos --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 </head>
 
 <body id="app">
+
     <div class="d-flex flex-column min-vh-100">
+
         <!-- HEADER -->
         <header class="shadow">
             <div class="container py-3">
                 <div class="row align-items-center text-center text-md-start">
                     <div class="col-12 col-md-4 mb-3 mb-md-0">
-                        <img src="{{ asset('img/logo-21.png') }}" alt="Logo" class="img-fluid"
+                        <img src="{{ asset('img/logo-21.png') }}" alt="Logo Prelab Consultores" class="img-fluid"
                             style="max-height: 60px;">
                     </div>
-                    <div class="info-header col-6 col-md-4">
+
+                    <div class="col-6 col-md-4">
                         <h6 class="mb-0">Línea de Atención</h6>
                         <small>315 244 3063</small>
                     </div>
-                    <div class="info-header col-6 col-md-4">
+
+                    <div class="col-6 col-md-4">
                         <h6 class="mb-0">Email</h6>
                         <small>comercial@prelabconsultores.com</small>
                     </div>
@@ -41,41 +84,43 @@
             </div>
         </header>
 
-        <!-- NAVBAR -->
-        <nav class="navbar navbar-expand-lg shadow sticky-top">
+        <!-- NAV -->
+        <nav class="navbar navbar-expand-lg shadow sticky-top" aria-label="Navegación principal">
             <div class="container">
-                <div class="trabajos btn btn-outline-warning">
-                    <a href="{{ route('trabajos.index') }}">Nuestros trabajos</a>
-                </div>
-                <!-- Botón para mostrar el menú en móviles -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#menuNavegacion">
-                    <i class="bi bi-menu-up"></i>
-                    <!-- <span class="navbar-toggler-icon"></span> -->
+
+                <a href="{{ route('trabajos.index') }}" class="btn btn-outline-warning">
+                    Nuestros trabajos
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacion"
+                    aria-controls="menuNavegacion" aria-expanded="false" aria-label="Mostrar menú">
+                    <i class="bi bi-list fs-3"></i>
                 </button>
 
-                <div class="collapse navbar-collapse menu-overlay" id="menuNavegacion">
-
+                <div class="collapse navbar-collapse" id="menuNavegacion">
                     <ul class="navbar-nav ms-auto fw-bold">
+
                         @auth
                             <li class="nav-item">
                                 <a href="/" class="nav-link">Inicio</a>
                             </li>
+
                             @if (auth()->user()->role === 'admin')
                                 <li class="nav-item">
                                     <a href="{{ route('dashboard') }}" class="nav-link">Admin</a>
                                 </li>
                             @endif
+
                             @if (auth()->user()->role === 'cliente')
                                 <li class="nav-item">
                                     <a href="{{ route('empresa.cliente') }}" class="nav-link">Mi Empresa</a>
                                 </li>
                             @endif
+
                             <li class="nav-item">
-                                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                <form action="{{ route('logout') }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn btn-link mt-2 text-decoration-none fw-bold"
-                                        style="border: none; background: none; padding: 0; cursor: pointer;">
+                                    <button type="submit" class="btn btn-link nav-link text-danger">
                                         Salir
                                     </button>
                                 </form>
@@ -93,24 +138,28 @@
                                 <a href="{{ route('login') }}" class="nav-link">Login</a>
                             </li>
                         @endguest
+
                     </ul>
                 </div>
             </div>
         </nav>
+
         <!-- MAIN -->
-        <main class="flex-grow-1"> <!-- Hace que el main crezca para ocupar el espacio disponible -->
+        <main class="flex-grow-1">
             @yield('contenido')
         </main>
 
-        <footer class="footer mt-4">
+        <!-- FOOTER -->
+        <footer class="mt-4">
             @yield('footer')
         </footer>
 
-        @yield('scripts')
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
-
-
     </div>
+
+    @yield('scripts')
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+
 </body>
 
 </html>

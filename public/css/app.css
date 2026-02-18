@@ -4,38 +4,21 @@
     --color-secundario: orange;
     --color-base: white;
 }
-/* ######### layouts/app ############ */
-.container {
-    position: relative;
-    z-index: 2;
-}
-.trabajos a {
-    text-decoration: none;
-    color: var(--color-base);
-    font-weight: bold;
-}
-.navbar {
-    background: var(--color-primario);
-}
-.navbar-nav {
-    gap: 1rem;
-}
+/*  layouts/app */
+.navbar {background: var(--color-primario);}
+
+.navbar-nav { gap: 1rem;}
+
 .navbar-nav a {
     color: var(--color-base);
     font-size: larger;
 }
-.navbar-nav a:hover {
-    color: var(--color-secundario);
-}
-.navbar-nav button {
-    color: red;
-    font-size: larger;
-}
-.navbar-nav button:hover {
-    color: darkred;
-}
-/*############################ welcome.blade.php ################################*/
-.seccion-principal {
+.navbar-nav a:hover {color: var(--color-secundario);}
+
+.navbar-nav button:hover { color: darkred;}
+
+/* welcome.blade.php */
+.seccion-inicial {
     padding-top: 2rem;
     min-height: 100vh;
     background-image: url("/img/inicio.webp");
@@ -44,50 +27,12 @@
     background-repeat: no-repeat;
     color: var(--color-primario);
 }
-.seccion-principal .conten {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
-.seccion-principal span {
-    font-size: 3rem;
-    font-style: italic;
-    width: 40%;
-    text-align: left;
-}
+
 .barra-especialidades {
     background: var(--color-primario);
-    height: 6rem;
-    display: flex;
-    justify-content: center;
-    margin-top: -3rem;
-    align-items: center;
-    justify-content: space-around;
     border-radius: 5rem 0 0 5rem;
 }
-.barra-especialidades p {
-    color: var(--color-base);
-}
-.seccion-presentacion {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 2rem;
-    gap: 2rem;
-}
-.seccion-presentacion h3 {
-    color: var(--color-primario);
-}
-.seccion-presentacion img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-right: 3px solid orange;
-    border-bottom: 3px solid orange;
-    padding: 10px;
-}
+
 .barra-asesoria {
     background: var(--color-primario);
     color: var(--color-base);
@@ -97,64 +42,13 @@
     justify-content: space-around;
     border-radius: 0 5rem 5rem 0;
 }
-.seccion-consultorias {
-    display: flex;
-    flex-direction: column;
-    margin-top: 2rem;
-    gap: 2rem;
-}
-.seccion-consultorias ul {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    font-style: italic;
-    text-align: justify;
-}
-.seccion-consultorias .listas {
-    list-style-type: none;
-    padding-left: 0;
-}
-.seccion-consultorias h5 {
-    color: var(--color-primario);
-}
-.seccion-consultorias i {
-    color: var(--color-secundario);
-    font-size: 2rem;
-}
-.barra-medicina {
-    background: var(--color-primario);
-    height: 17rem;
-    color: var(--color-base);
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-}
-.barra-contacto {
-    height: auto;
-    padding: 1rem 0 1rem 0;
-    gap: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.contacto {
-    color: var(--color-base);
-    padding: 1rem;
-    display: flex;
-    width: 40%;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-}
-.contacto i {
-    font-size: 2rem;
+
+.barra-medicina {background: var(--color-primario);}
+
+footer i {
+    font-size: 1rem;
     display: flex;
     background: var(--color-secundario);
-    padding: 10px;
     border-radius: 50%;
     border: 2px solid yellow;
 }
@@ -164,37 +58,28 @@
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat;
-    margin: 0 4rem 0 4rem;
 }
-/*############################### Formularios ###############################*/
-.form {
-    margin-top: 4rem;
-}
-.form-control {
-    background: rgb(224, 223, 223);
-}
-label {
-    width: 20%;
-}
-.footer {
-    background: rgb(6, 6, 62);
-}
+.copyright { background: var(--color-primario);}
 
-/*############## Media Queries ################ */
+/* Formularios */
+.form { margin-top: 4rem;}
 
+.form-control { background: rgb(224, 223, 223);}
+
+label { width: 20%;}
+
+.footer {background: rgb(6, 6, 62);}
+
+/* Media Queries */
 @media screen and (max-width: 768px) {
     /* Ajustes para pantallas pequeñas */
     .register {
         margin: 0;
         padding: 0;
     }
-    .logo {
-        height: 2.5rem;
-    }
+    .logo { height: 2.5rem;}
 
-    .info-header {
-        display: none;
-    }
+    .info-header { display: none;}
 
     .navbar-nav a {
         font-size: medium;
@@ -209,35 +94,26 @@ label {
         background: none;
     }
 
-    .seccion-principal {
+    .seccion-inicial {
         min-height: 70vh;
         background-image: url("/img/movill.png");
     }
 
-    .seccion-principal .conten {
+    .seccion-inicial .conten {
         text-align: center;
         gap: 2rem;
     }
 
-    .seccion-principal span {
-        font-size: 2rem;
+    .seccion-inicial span {
         width: 100%;
-    }
-
-    .seccion-principal span {
-        font-size: 2rem;
-        font-style: italic;
-        width: 100%;
-        text-align: center;
     }
 
     .barra-especialidades {
         display: flex;
         flex-direction: column;
         height: auto;
-        margin: 0 1rem;
         padding: 1rem;
-        border-radius: 1rem;
+        border-radius: 2rem 0;
         align-items: center;
     }
 
@@ -245,6 +121,7 @@ label {
         display: flex;
         text-align: left;
     }
+
     .seccion-presentacion {
         flex-direction: column;
         align-items: center;
@@ -261,29 +138,7 @@ label {
         padding: 1rem;
     }
 
-    .barra-contacto {
-        padding: 0.5rem;
-        display: flex;
-        text-align: center;
-        flex-direction: column;
-    }
-
-    .contacto {
-        display: flex;
-        flex-direction: column;
-        margin: 0%;
-        width: 90%;
-        height: 40%;
-        padding: 0.2rem;
-    }
-
-    .contacto i {
-        font-size: 1rem;
-    }
-
-    label {
-        width: 40%;
-    }
+    label { width: 40%; }
 
     .pie-decorativo {
         height: 10rem;
@@ -298,21 +153,18 @@ label {
         width: 35%;
         background: var(
             --color-primario
-        ); /* mismo color que tu navbar (bg-primary u otro) */
+        );
         z-index: 1000;
         padding: 1rem 0;
         border-radius: 0 0 1rem 1rem;
         border: solid 1px rgb(6, 6, 62);
     }
 
-    .menu-overlay .nav-link {
-        padding: 0.5rem;
-    }
+    .menu-overlay .nav-link { padding: 0.5rem;}
 }
 
 @media screen and (max-width: 820px) {
     /* Ajustes para pantallas medianas */
-
     .menu-overlay {
         position: absolute;
         top: 100%; /* justo debajo de la navbar */
@@ -320,23 +172,19 @@ label {
         width: 35%;
         background: var(
             --color-primario
-        ); /* mismo color que tu navbar (bg-primary u otro) */
+        );
         z-index: 1000;
         padding: 1rem;
         border-radius: 0 0 1rem 1rem;
-        border: solid 1px rgb(6, 6, 62); /* borde para distinguir */
+        border: solid 1px rgb(6, 6, 62);
     }
 
-    .menu-overlay .nav-link {
-        padding: 0.5rem;
-    }
+    .menu-overlay .nav-link {  padding: 0.5rem; }
 }
 
-/* ################### trabajos realizados ###################### */
+/* trabajos realizados */
 .img-carousel {
-    max-width: 700px; /* ancho máximo */
-    max-height: 400px; /* alto máximo */
-    object-fit: cover; /* recorta para mantener proporción */
+    max-width: 700px;
+    max-height: 400px;
+    object-fit: cover;
 }
-
-/* ######### Fin <i class="bi bi-justify"></i> ############ */

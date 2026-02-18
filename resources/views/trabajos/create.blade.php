@@ -1,3 +1,24 @@
+{{--
+|--------------------------------------------------------------------------
+| Vista: Crear Nuevo Trabajo
+|--------------------------------------------------------------------------
+| Descripción:
+| Vista administrativa para registrar un nuevo trabajo realizado.
+| Permite definir título, descripción, empresa asociada y subir
+| múltiples imágenes opcionales.
+|
+| Funcionalidades:
+| - Validación con feedback visual.
+| - Persistencia de datos con old().
+| - Subida de múltiples archivos.
+| - Mensajes de error por campo.
+|
+| Autor: Willian Castro
+| Fecha: 2025
+|--------------------------------------------------------------------------
+--}}
+
+
 @extends('layouts.app_admin')
 
 @section('titulo')
@@ -5,12 +26,17 @@
 @endsection
 
 @section('contenido')
-    <div class="container magen-top-admin m-y5 d-flex flex-column align-items-center">
-        <h2 class="mb-4">Compartir un Trabajo Realizado</h2>
 
-        {{-- Mensajes de error globales --}}
+    <section class="container magen-top-admin my-5 d-flex flex-column align-items-center"
+        aria-labelledby="nuevo-trabajo-title">
+
+        <header class="mt-5">
+            <h2 id="nuevo-trabajo-title">Compartir un Trabajo Realizado</h2>
+        </header>
+
+        {{-- Errores globales --}}
         @if ($errors->any())
-            <div class="alert alert-danger">
+            <div class="alert alert-danger" role="alert">
                 <ul class="mb-0">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -20,7 +46,8 @@
         @endif
 
         <form action="{{ route('trabajos.store') }}" method="POST" enctype="multipart/form-data"
-            class="shadow-lg p-4 rounded col-md-8">
+            class="shadow-lg p-4 rounded col-md-8" novalidate>
+
             @csrf
 
             {{-- Título --}}
@@ -36,8 +63,8 @@
             {{-- Descripción --}}
             <div class="mb-3">
                 <label for="descripcion" class="form-label">Descripción</label>
-                <textarea name="descripcion" id="descripcion" rows="2"
-                    class="form-control @error('descripcion') is-invalid @enderror">{{ old('descripcion') }}</textarea>
+                <textarea name="descripcion" id="descripcion" rows="3"
+                    class="form-control @error('descripcion') is-invalid @enderror" required>{{ old('descripcion') }}</textarea>
                 @error('descripcion')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -60,30 +87,29 @@
                 @enderror
             </div>
 
-            {{-- Imagen --}}
-            <div class="mb-3">
-                <label for="imagens" class="form-label">Imagen del trabajo (opcional)</label>
+            {{-- Imágenes --}}
+            <div class="mb-4">
+                <label for="imagens" class="form-label">
+                    Imágenes del trabajo (opcional)
+                </label>
                 <input type="file" name="imagens[]" id="imagens"
-                    class="form-control @error('imagens') is-invalid @enderror" multiple>
+                    class="form-control @error('imagens') is-invalid @enderror" accept="image/*" multiple>
                 @error('imagens')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
-            {{-- Botones --}}
-            <div class="d-flex justify-content-between">
-                <button type="submit" class="btn btn-success">Guardar</button>
-                <a href="{{ route('trabajos.index') }}" class="btn btn-secondary">Cancelar</a>
-            </div>
-        </form>
-    </div>
-@endsection
+            <footer class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-success">
+                    Guardar
+                </button>
+                <a href="{{ route('trabajos.index') }}" class="btn btn-secondary">
+                    Cancelar
+                </a>
+            </footer>
 
-@section('scripts')
-    <script>
-        // Ocultar mensaje después de 3 segundos
-        setTimeout(function() {
-            $('.mensaje').fadeOut('slow');
-        }, 3000);
-    </script>
+        </form>
+
+    </section>
+
 @endsection

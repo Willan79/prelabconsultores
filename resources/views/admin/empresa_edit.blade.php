@@ -1,74 +1,95 @@
 @extends('layouts.app_admin')
 
+{{--
+|--------------------------------------------------------------------------
+| Vista: Editar Empresa
+|--------------------------------------------------------------------------
+| Descripción:
+| Permite editar los datos básicos de una empresa registrada.
+|
+| Funcionalidades:
+| - Actualizar información de la empresa.
+| - Asignar o remover representante.
+|
+| Requisitos:
+| - Variables:
+|   - $empresa (modelo Empresa).
+|   - $usuarios (colección de usuarios disponibles).
+|
+| Rutas:
+| - empresa.update (PUT)
+|
+| Autor: Willian Castro
+| Fecha: 2025
+|--------------------------------------------------------------------------
+--}}
+
 @section('titulo')
     - Editar empresa
 @endsection
 
 @section('contenido')
-    <!-- Contenido principal -->
-    <div class="container magen-top-admin d-flex justify-content-center align-items-center">
-        <div class="form card shadow-lg p-2 col-md-10 col-lg-6" id="login-bg">
-            <div class=" card-body ">
-                <!--formulario de edición -->
-                <form action="{{ route('empresa.update', $empresa->id) }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT') <!-- Método HTTP para actualizar el recurso -->
+    <div class="container magen-top d-flex justify-content-center align-items-center">
+        <div class="card shadow-lg p-2 mb-2 col-md-10 col-lg-6">
+            <div class="card-body">
 
-                    <!-- Nombre de la empresa -->
-                    <div class="formu mb-3">
+                <form action="{{ route('empresa.update', $empresa->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+
+                    <div class="mb-3">
                         <label for="nombre" class="form-label fw-bold">Nombre</label>
                         <input type="text" id="nombre" name="nombre" class="form-control"
-                            value="{{ $empresa->nombre }}">
+                            value="{{ old('nombre', $empresa->nombre) }}" required>
                     </div>
 
-                    <div class="formu mb-3">
-                        <label for="nit" class="form-label fw-bold">Nit</label>
-                        <input type="number" id="nit" name="nit" class="form-control" value="{{ $empresa->nit }}"
-                            step="0.01">
+                    <div class="mb-3">
+                        <label for="nit" class="form-label fw-bold">NIT</label>
+                        <input type="text" id="nit" name="nit" class="form-control"
+                            value="{{ old('nit', $empresa->nit) }}" required>
                     </div>
 
-                    <div class="formu mb-3">
-                        <label for="razon_social" class="form-label fw-bold">Razon_social</label>
+                    <div class="mb-3">
+                        <label for="razon_social" class="form-label fw-bold">Razón social</label>
                         <input type="text" id="razon_social" name="razon_social" class="form-control"
-                            value="{{ $empresa->razon_social }}" min="1">
+                            value="{{ old('razon_social', $empresa->razon_social) }}" required>
                     </div>
 
-                    <div class="formu mb-3">
-                        <label for="num_trabajadores" class="form-label fw-bold">Num_trabajadores</label>
+                    <div class="mb-3">
+                        <label for="num_trabajadores" class="form-label fw-bold">Trabajadores</label>
                         <input type="number" id="num_trabajadores" name="num_trabajadores" class="form-control"
-                            value="{{ $empresa->num_trabajadores }}" min="1">
+                            min="1" value="{{ old('num_trabajadores', $empresa->num_trabajadores) }}" required>
                     </div>
 
-                    <div class="formu mb-3">
+                    <div class="mb-3">
                         <label for="ciudad" class="form-label fw-bold">Ciudad</label>
                         <input type="text" id="ciudad" name="ciudad" class="form-control"
-                            value="{{ $empresa->ciudad }}" min="1">
+                            value="{{ old('ciudad', $empresa->ciudad) }}" required>
                     </div>
 
-                    <div class="formu mb-3">
+                    <div class="mb-3">
                         <label for="direccion" class="form-label fw-bold">Dirección</label>
                         <input type="text" id="direccion" name="direccion" class="form-control"
-                            value="{{ $empresa->direccion }}" min="1">
+                            value="{{ old('direccion', $empresa->direccion) }}" required>
                     </div>
 
-                    <!-- Selección de usuario representánte -->
-                    <div class="formu form-group mb-3">
-                        <label for="user_id" class="form-label fw-bold">Representánte</label>
-                        <select name="user_id" id="user_id" class="form-control">
-                            <option value="" {{ $empresa->user_id ? '' : 'selected' }}>Sin asignar</option>{{--  Si no hay usuario asignado, se selecciona esta opción --}}
-                            {{-- Si hay un usuario asignado, se selecciona esa opción --}}
+                    <div class="mb-3">
+                        <label for="user_id" class="form-label fw-bold">Representante</label>
+                        <select name="user_id" id="user_id" class="form-select">
+                            <option value="">Sin asignar</option>
                             @foreach ($usuarios as $usuario)
                                 <option value="{{ $usuario->id }}"
-                                    {{ $empresa->user_id == $usuario->id ? 'selected' : '' }}>
+                                    {{ old('user_id', $empresa->user_id) == $usuario->id ? 'selected' : '' }}>
                                     {{ $usuario->name }} ({{ $usuario->email }})
                                 </option>
                             @endforeach
                         </select>
                     </div>
 
-                    <!-- Botón para enviar el formulario -->
                     <div class="text-end">
-                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                        <button type="submit" class="btn btn-primary">
+                            Actualizar
+                        </button>
                     </div>
                 </form>
 

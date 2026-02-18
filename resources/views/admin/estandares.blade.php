@@ -5,7 +5,7 @@
 @endsection
 
 @section('contenido')
-    <div class="container magen-top-admin shadow p-4">
+    <div class="container magen-top shadow p-4">
         <h2 class="mb-4">Estándares de {{ $empresa->nombre }}</h2>
         {{-- - Formulario para subir estándar - --}}
         <form action="{{ route('estandares.store', $empresa->id) }}" method="POST" enctype="multipart/form-data"

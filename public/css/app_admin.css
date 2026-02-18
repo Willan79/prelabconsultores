@@ -1,75 +1,25 @@
-/* Public CSS for Admin Panel */
-/*##############################################################*/
-/*dashboar*/
-body {
-    background: rgb(240, 240, 240);
-}
+/*CSS para el panel de admin */
 
-.graficos {
-    margin-top: 6rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+body { background: rgb(240, 240, 240);}
 
-.header-admin {
-    background: midnightblue;
-}
+.grafico-panel { margin-top: 5rem;}
 
-.header-tex {
-    color: white;
-}
-
-.nav-lateral {
+.barra-lateral {
     position: fixed;
-    margin-top: 4rem;
+    top: 72px; /* altura real de tu header */
+    left: 0;
+    height: calc(100vh - 72px);
+    overflow-y: auto;
+    z-index: 1000;
 }
 
-.nav-lateral a {
-    color: white;
-    text-decoration: none;
-}
+.header-admin { background: midnightblue;}
 
-/*##############################################################*/
 .mensaje {
     color: blue;
     padding: 7px;
 }
 
-.magen-top-admin {
-    margin-top: 7rem;
-}
+.magen-top { margin-top: 7rem;}
 
-.nueva-empresa-campos {
-    display: flex;
-    gap: 1rem;
-}
-
-.form-control,
-.form-select {
-    background: rgb(233, 232, 232);
-}
-
-.tabla-empresa-td td {
-
-    white-space: nowrap; /* Evita saltos de línea */
-    overflow: hidden; /* Oculta el desbordamiento */
-    text-overflow: ellipsis; /* Muestra los "..." */
-    max-width: 150px;
-}
-
-.grafico-panel{
-    margin-top: 5rem;
-
-}
-.grafico-panel a{
-    color: black;
-}
-
-.grafico-panel a:hover{
-    color: dimgray;
-}
-
-.logo{
-    border-radius: 5px;
-}
+.logo { border-radius: 5px;}

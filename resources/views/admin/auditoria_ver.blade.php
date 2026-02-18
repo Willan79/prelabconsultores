@@ -1,3 +1,17 @@
+{{--
+|--------------------------------------------------------------------------
+| Vista: Detalle de Auditoría
+|--------------------------------------------------------------------------
+| Descripción:
+| Muestra la información completa de una auditoría específica.
+| Presenta datos de empresa, consultor, estado y resultados.
+|
+| Funcionalidades:
+| - Visualización clara de todos los campos relevantes.
+| - Botones para volver a la lista o editar la auditoría.
+|--------------------------------------------------------------------------
+--}}
+
 @extends('layouts.app_admin')
 
 @section('titulo')
@@ -5,39 +19,55 @@
 @endsection
 
 @section('contenido')
-    <div class="container magen-top-admin d-flex justify-content-center align-items-center ">
-        <div class="card col-8 shadow">
+    <main class="container magen-top d-flex justify-content-center">
+
+        <article class="card col-lg-8 shadow">
             <div class="card-body">
 
-                <div class="d-flex gap-4">
-                    <h5 class="card-title">Empresa:</h5>
-                    <p class="card-text">{{ $auditoria->empresa->nombre}}</p>
-                </div>
+                <header class="mb-4">
+                    <h4 class="fw-bold text-center">Detalle de Auditoría</h4>
+                </header>
 
-                <div class="d-flex gap-4">
-                    <h5 class="card-title">Consultor:</h5>
-                    <p class="card-text">{{ $auditoria->user->name . ' ' . $auditoria->user->apellido }}</p>
-                </div>
+                <dl class="row">
+                    <dt class="col-sm-4">Empresa</dt>
+                    <dd class="col-sm-8">{{ $auditoria->empresa->nombre }}</dd>
 
-                <div class="d-flex gap-4">
-                    <h5 class="card-title">Fecha:</h5>
-                    <p class="card-text">{{ \Carbon\Carbon::parse($auditoria->fecha)->format('d/m/Y') }}</p>
-                </div>
+                    <dt class="col-sm-4">Consultor</dt>
+                    <dd class="col-sm-8">
+                        {{ $auditoria->user->name }} {{ $auditoria->user->apellido }}
+                    </dd>
 
-                <div class="d-flex gap-4">
-                    <h5 class="card-title">Estado:</h5>
-                    <p class="card-text text-capitalize">{{ $auditoria->estado }}</p>
-                </div>
+                    <dt class="col-sm-4">Fecha</dt>
+                    <dd class="col-sm-8">
+                        {{ \Carbon\Carbon::parse($auditoria->fecha)->format('d/m/Y') }}
+                    </dd>
 
-                <h5 class="card-title">Resultado:</h5>
-                <p class="card-text">{{ $auditoria->resultado ?: 'Sin resultado registrado' }}</p>
+                    <dt class="col-sm-4">Estado</dt>
+                    <dd class="col-sm-8 text-capitalize">
+                        {{ $auditoria->estado }}
+                    </dd>
 
-                <h5 class="card-title">Observaciones:</h5>
-                <p class="card-text">{{ $auditoria->observaciones ?: 'Sin observaciones' }}</p>
+                    <dt class="col-sm-4">Resultado</dt>
+                    <dd class="col-sm-8">
+                        {{ $auditoria->resultado ?: 'Sin resultado registrado' }}
+                    </dd>
 
-                <a href="{{ route('auditorias') }}" class="btn btn-secondary mt-3">Volver al listado</a>
-                <a href="{{ route('auditorias_edit', $auditoria) }}" class="btn btn-primary mt-3">Editar Auditoría</a>
+                    <dt class="col-sm-4">Observaciones</dt>
+                    <dd class="col-sm-8">
+                        {{ $auditoria->observaciones ?: 'Sin observaciones' }}
+                    </dd>
+                </dl>
+
+                <footer class="d-flex justify-content-end gap-2 mt-4">
+                    <a href="{{ route('auditorias') }}" class="btn btn-secondary">
+                        Volver
+                    </a>
+                    <a href="{{ route('auditorias_edit', $auditoria) }}" class="btn btn-primary">
+                        Editar
+                    </a>
+                </footer>
+
             </div>
-        </div>
-    </div>
+        </article>
+    </main>
 @endsection

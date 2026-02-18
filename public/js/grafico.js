@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
             labels: ["Enero", "Febrero", "Marzo", "Abril"],
             datasets: [
                 {
-                    label: "Empresas",
+                    label: "Registros",
                     data: [12, 9, 3, 7],
 
                     backgroundColor: [
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
             labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
             datasets: [
                 {
-                    label: "Auditorias",
+                    label: "Realizaciones",
                     data: [12, 9, 3, 7, 5, 9, 2],
 
                     backgroundColor: [
@@ -68,15 +68,17 @@ document.addEventListener("DOMContentLoaded", function () {
     var grafico = new Chart(ctx, {
         type: "bar",
         data: {
-            labels: ["Clientes", "Proveedores"],
+            labels: ["Empresa-01", "Empresa-02", "Empresa-03","Empresa-04"],
             datasets: [
                 {
-                    label: "usuarios",
-                    data: [21, 9],
+                    label: "Cantidad",
+                    data: [21, 9, 13, 17],
 
                     backgroundColor: [
                         "rgba(225, 99, 32, 1)",
                         "rgba(153, 102, 255, 0.7)",
+                        "rgba(255, 205, 86, 0.7)",
+                        "rgba(75, 192, 192, 0.7)",
                     ],
 
                     borderColor: "rgba(225, 255, 32, 1)",

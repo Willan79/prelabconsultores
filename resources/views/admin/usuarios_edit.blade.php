@@ -1,3 +1,15 @@
+{{--
+|--------------------------------------------------------------------------
+| Vista: Editar Rol de Usuario
+|--------------------------------------------------------------------------
+| Descripción:
+| Permite al administrador modificar el rol de un usuario del sistema.
+|
+| Funcionalidades:
+| - Formulario para seleccionar un nuevo rol (admin, consultor, cliente).
+|--------------------------------------------------------------------------
+--}}
+
 @extends('layouts.app_admin')
 
 @section('titulo')
@@ -5,25 +17,46 @@
 @endsection
 
 @section('contenido')
-<div class="container magen-top-admin col-md-4 shadow p-4">
-    <h3>Editar Rol de {{ $usuario->name }}</h3>
+    <main class="container magen-top d-flex justify-content-center">
 
-    <form action="{{ route('usuarios.update', $usuario->id) }}" method="POST">
-        @csrf
-        @method('PUT')
+        <section class="card shadow col-md-6 col-lg-4 p-4">
 
-        <div class="mb-3">
-            <label for="role" class="form-label">Rol</label>
-            <select name="role" class="form-select" required>
+            <header class="mb-3">
+                <h3 class="text-center">
+                    Editar rol de <strong>{{ $usuario->name }}</strong>
+                </h3>
+            </header>
 
-                <option value="consultor" {{ $usuario->role == 'consultor' ? 'selected' : '' }}>Consultor</option>
-                <option value="cliente" {{ $usuario->role == 'cliente' ? 'selected' : '' }}>Cliente</option>
-                <option value="admin" {{ $usuario->role == 'admin' ? 'selected' : '' }}>Admin</option>
-            </select>
-        </div>
+            <form action="{{ route('usuarios.update', $usuario->id) }}" method="POST">
+                @csrf
+                @method('PUT')
 
-        <button type="submit" class="btn btn-primary">Actualizar Rol</button>
-        <a href="{{ route('tabla_user') }}" class="btn btn-secondary">Cancelar</a>
-    </form>
-</div>
+                <div class="mb-4">
+                    <label for="role" class="form-label fw-bold">Rol del usuario</label>
+                    <select name="role" id="role" class="form-select" required>
+                        <option value="consultor" {{ $usuario->role === 'consultor' ? 'selected' : '' }}>
+                            Consultor
+                        </option>
+                        <option value="cliente" {{ $usuario->role === 'cliente' ? 'selected' : '' }}>
+                            Cliente
+                        </option>
+                        <option value="admin" {{ $usuario->role === 'admin' ? 'selected' : '' }}>
+                            Administrador
+                        </option>
+                    </select>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">
+                        Actualizar rol
+                    </button>
+
+                    <a href="{{ route('tabla_user') }}" class="btn btn-outline-secondary">
+                        Cancelar
+                    </a>
+                </div>
+            </form>
+
+        </section>
+    </main>
 @endsection

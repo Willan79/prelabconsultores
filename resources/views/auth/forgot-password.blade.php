@@ -1,4 +1,3 @@
-<!-- ############################################################################## -->
 
 @extends('layouts.app')
 
@@ -8,7 +7,7 @@
         <div class="form card shadow-lg p-2 col-md-10 col-lg-6" id="login-bg">
 
             <div class="d-flex justify-content-center gap-4">
-                <img class="logo img-fluid mb-4" src="{{ asset('img/FINAL.png') }}" alt="Logo" style="max-height: 70px;">
+                <img class="logo img-fluid mb-4" src="{{ asset('img/FINAL.png') }}" alt="Logo" style="max-height: 50px;">
             </div>
 
             <p>

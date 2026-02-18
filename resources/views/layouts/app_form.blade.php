@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
-<body id="app"> <!--  -->
+<body id="app"> 
     <div class="position-relative min-vh-100 "> <!-- Contenedor principal que ocupa toda la altura de la pantalla -->
         <!-- Navbar -->
         <header class="shadow">

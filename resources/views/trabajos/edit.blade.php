@@ -1,8 +1,41 @@
-@extends('layouts.app')
+{{--
+|--------------------------------------------------------------------------
+| Vista: Editar Trabajo
+|--------------------------------------------------------------------------
+| Descripción:
+| Permite editar la información de un trabajo existente, incluyendo
+| título, descripción, empresa asociada y gestión de imágenes.
+|
+| Funcionalidades:
+| - Formulario de edición con validación.
+| - Carga de múltiples imágenes.
+| - Listado de imágenes actuales con opción de eliminación.
+| - Mensajes de estado mediante componente <x-alerta>.
+|
+| Performance:
+| - Imágenes con lazy loading.
+| - Dimensiones máximas para evitar reflows.
+|
+| Dependencias:
+| - Laravel Blade
+| - Bootstrap 5
+|
+| Autor: Willian Castro
+| Fecha: 2025
+|--------------------------------------------------------------------------
+--}}
+
+@extends('layouts.app_admin')
 
 @section('contenido')
-    <div class="container magen-top-admin my-5">
-        <h2>Editar Trabajo</h2>
+
+    <section class="container magen-top" aria-labelledby="editar-trabajo-title">
+
+        <header class="mb-4">
+            <h2 id="editar-trabajo-title">Editar Trabajo</h2>
+        </header>
+
+        {{-- Mensajes --}}
         @if (session('success'))
             <x-alerta tipo="success" :mensaje="session('success')" />
         @endif
@@ -11,9 +44,10 @@
             <x-alerta tipo="danger" :mensaje="$errors->first()" />
         @endif
 
-        {{-- Formulario para editar el trabajo --}}
-        <form action="{{ route('trabajos.update', $trabajo->id) }}" method="POST" enctype="multipart/form-data"
-            class="shadow p-4 rounded">
+        {{-- Formulario --}}
+        <form action="{{ route('trabajos.update', $trabajo) }}" method="POST" enctype="multipart/form-data"
+            class="shadow p-4 rounded mb-4">
+
             @csrf
             @method('PUT')
 
@@ -25,7 +59,7 @@
 
             <div class="mb-3">
                 <label for="descripcion" class="form-label">Descripción</label>
-                <textarea name="descripcion" id="descripcion" rows="2" class="form-control" required>{{ old('descripcion', $trabajo->descripcion) }}</textarea>
+                <textarea name="descripcion" id="descripcion" rows="3" class="form-control" required>{{ old('descripcion', $trabajo->descripcion) }}</textarea>
             </div>
 
             <div class="mb-3">
@@ -41,39 +75,57 @@
             </div>
 
             <div class="mb-3">
-                <label for="imagens" class="form-label">Imágenes del trabajo (puedes subir varias)</label>
+                <label for="imagens" class="form-label">
+                    Imágenes del trabajo (puedes subir varias)
+                </label>
                 <input type="file" name="imagens[]" id="imagens" class="form-control" accept="image/*" multiple>
-
             </div>
 
-            <button type="submit" class="btn btn-success">Actualizar</button>
-            <a href="{{ route('trabajos.index') }}" class="btn btn-secondary">Cancelar</a>
+            <footer class="d-flex gap-2">
+                <button type="submit" class="btn btn-success">
+                    Actualizar
+                </button>
+                <a href="{{ route('trabajos.index') }}" class="btn btn-secondary">
+                    Cancelar
+                </a>
+            </footer>
         </form>
-        {{-- Mostrar imágenes actuales con opción para eliminar --}}
-        @if ($trabajo->imagens && $trabajo->imagens->count() > 0)
-            {{-- Verificar si hay imágenes --}}
-            <p class="mt-2">Imágenes actuales:</p>
-            <div class="d-flex flex-wrap gap-2">
-                {{-- Iterar sobre las imágenes del trabajo --}}
-                @foreach ($trabajo->imagens as $imagen)
-                    <div class="position-relative d-inline-block">
-                        {{-- -- Contenedor para cada imagen --}}
-                        <img src="{{ asset('storage/' . $imagen->ruta) }}" alt="Imagen del trabajo" class="img-thumbnail"
-                            style="max-width: 150px;"> 
 
-                        {{-- Botón para eliminar --}}
-                        <form action="{{ route('imagenes.destroy', $imagen->id) }}" method="POST"
-                            style="position:absolute; top:5px; right:5px;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger"
-                                onclick="return confirm('¿Eliminar esta imagen?')">✖</button>
-                        </form>
-                    </div>
-                @endforeach
-            </div>
+        {{-- Imágenes actuales mensaje--}}
+        @if ($trabajo->imagens && $trabajo->imagens->count() > 0)
+            <section aria-labelledby="imagenes-actuales-title">
+                <h3 id="imagenes-actuales-title" class="h5 mb-2">
+                    Imágenes actuales
+                </h3>
+
+                <div class="d-flex flex-wrap gap-3">
+
+                    @foreach ($trabajo->imagens as $imagen)
+                        <figure class="position-relative">
+
+                            <img src="{{ asset('storage/' . $imagen->ruta) }}" alt="Imagen del trabajo"
+                                class="img-thumbnail" style="max-width:150px" loading="lazy" width="150" height="150">
+
+                            <form action="{{ route('imagenes.destroy', $imagen) }}" method="POST"
+                                class="position-absolute top-0 end-0" onsubmit="return confirm('¿Eliminar esta imagen?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    ✖
+                                </button>
+                            </form>
+
+                        </figure>
+                    @endforeach
+
+                </div>
+            </section>
         @else
-            <p class="text-muted mt-2">Este trabajo no tiene imágenes cargadas.</p>
+            <p class="text-muted">
+                Este trabajo no tiene imágenes cargadas.
+            </p>
         @endif
-    </div>
+
+    </section>
+
 @endsection
