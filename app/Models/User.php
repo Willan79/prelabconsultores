@@ -1,5 +1,19 @@
 <?php
 
+/**
+ * Modelo User (Usuario del sistema)
+ * ------------------------------------------------------
+ * Este modelo representa a los usuarios autenticables del sistema
+ * (administradores, consultores y clientes).
+ *
+ * RESPONSABILIDADES:
+ * - Manejar la autenticación (Authenticatable)
+ * - Definir atributos asignables masivamente ($fillable)
+ * - Ocultar datos sensibles ($hidden)
+ * - Gestionar relaciones con otras entidades (Empresa)
+ *
+ */
+
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;

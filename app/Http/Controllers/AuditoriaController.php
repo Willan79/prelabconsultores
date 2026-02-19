@@ -1,5 +1,20 @@
 <?php
 
+/*
+
+| Controller: AuditoriaController
+|--------------------------------------------------------------------------
+| Responsabilidad:
+| Gestiona el ciclo completo de las auditorías (CRUD) delegando la lógica
+| de negocio al servicio AuditoriaService.
+|
+| Arquitectura:
+| - Controlador delgado (Thin Controller)
+| - Lógica en Service Layer
+|
+|--------------------------------------------------------------------------
+ */
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -9,66 +24,84 @@ use App\Services\AuditoriaService;
 
 class AuditoriaController extends Controller
 {
-    protected $auditoriaService;
+    protected AuditoriaService $auditoriaService;
 
     public function __construct(AuditoriaService $auditoriaService)
     {
         $this->auditoriaService = $auditoriaService;
     }
 
-    // Mostrar lista de auditorías
+    /** Listar auditorías */
     public function index()
     {
         $auditorias = $this->auditoriaService->listarAuditorias();
         return view('admin.auditorias', compact('auditorias'));
     }
 
-    // Mostrar formulario para crear auditoría
+    /** Mostrar formulario de creación */
     public function create()
     {
-        $empresas = Empresa::all();
-        $users = User::whereIn('role', ['consultor', 'admin'])->get();
-        return view('admin.auditoria_crear', compact('empresas', 'users'));
+        return view('admin.auditoria_crear', [
+            'empresas' => Empresa::all(),
+            'users' => User::whereIn('role', ['consultor', 'admin'])->get()
+        ]);
     }
 
-    // Almacenar nueva auditoría
+    /** Guardar auditoría */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'empresa_id' => 'required|exists:empresas,id',
-            'user_id' => 'required|exists:users,id',
-            'fecha' => 'required|date',
-            'resultado' => 'nullable|string',
-            'observaciones' => 'nullable|string',
-            'estado' => 'required|in:pendiente,en_proceso,finalizada',
-        ]);
+        $data = $this->validar($request);
 
         $this->auditoriaService->crearAuditoria($data);
 
-        return redirect()->route('auditorias')->with('success', 'Auditoría creada correctamente.');
+        return redirect()
+            ->route('auditorias')
+            ->with('success', 'Auditoría creada correctamente.');
     }
 
-    // Mostrar una auditoría específica
-    public function show($id)
+    /** Ver detalle */
+    public function show(int $id)
     {
         $auditoria = $this->auditoriaService->obtenerAuditoria($id);
         return view('admin.auditoria_ver', compact('auditoria'));
     }
 
-    // Mostrar formulario para editar auditoría
-    public function edit($id)
+    /** Formulario edición */
+    public function edit(int $id)
     {
-        $auditoria = $this->auditoriaService->obtenerAuditoria($id);
-        $empresas = Empresa::all();
-        $users = User::whereIn('role', ['consultor', 'admin'])->get();
-
-        return view('admin.auditoria_edit', compact('auditoria', 'empresas', 'users'));
+        return view('admin.auditoria_edit', [
+            'auditoria' => $this->auditoriaService->obtenerAuditoria($id),
+            'empresas' => Empresa::all(),
+            'users' => User::whereIn('role', ['consultor', 'admin'])->get()
+        ]);
     }
 
-    // Actualizar auditoría
-    public function update(Request $request, $id)
+    /** Actualizar */
+    public function update(Request $request, int $id)
     {
-        $data = $request->validate([
+        $data = $this->validar($request);
+
+        $this->auditoriaService->actualizarAuditoria($id, $data);
+
+        return redirect()
+            ->route('auditorias')
+            ->with('success', 'Auditoría actualizada correctamente.');
+    }
+
+    /** Eliminar */
+    public function destroy(int $id)
+    {
+        $this->auditoriaService->eliminarAuditoria($id);
+
+        return redirect()
+            ->route('auditorias')
+            ->with('success', 'Auditoría eliminada correctamente.');
+    }
+
+    /** Validación */
+    private function validar(Request $request): array
+    {
+        return $request->validate([
             'empresa_id' => 'required|exists:empresas,id',
             'user_id' => 'required|exists:users,id',
             'fecha' => 'required|date',
@@ -76,17 +109,5 @@ class AuditoriaController extends Controller
             'observaciones' => 'nullable|string',
             'estado' => 'required|in:pendiente,en_proceso,finalizada',
         ]);
-
-        $this->auditoriaService->actualizarAuditoria($id, $data);
-
-        return redirect()->route('auditorias')->with('success', 'Auditoría actualizada correctamente.');
-    }
-
-    // Eliminar auditoría
-    public function destroy($id)
-    {
-        $this->auditoriaService->eliminarAuditoria($id);
-
-        return redirect()->route('auditorias.index')->with('success', 'Auditoría eliminada correctamente.');
     }
 }

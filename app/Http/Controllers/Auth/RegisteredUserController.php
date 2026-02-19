@@ -64,14 +64,5 @@ class RegisteredUserController extends Controller
         }
 
         return redirect()->intended('/');
-
-        //! return de prueba en Thunder Client
-        /*
-        if ($request->expectsJson()) {
-            return response()->json([
-                'message' => 'Usuario registrado correctamente',
-                'user' => $user
-            ], 201);
-        } */
     }
 }

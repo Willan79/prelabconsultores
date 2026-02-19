@@ -18,10 +18,6 @@
 | - Protección CSRF.
 | - Inputs con validación del backend.
 |
-| Dependencias:
-| - Laravel Auth
-| - Bootstrap 5
-|
 | Autor: Willian Castro
 | Fecha: 2025
 |--------------------------------------------------------------------------

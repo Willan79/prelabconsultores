@@ -1,15 +1,36 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Model: Empresa
+|--------------------------------------------------------------------------
+| Representa una empresa dentro del sistema.
+|
+| Responsabilidades:
+| - Definir atributos asignables masivamente
+| - Declarar relaciones con otros modelos
+|
+| Relaciones:
+| - Una empresa tiene muchas auditorías
+| - Una empresa tiene muchos estándares
+| - Una empresa pertenece a un usuario
+|--------------------------------------------------------------------------
+ */
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Empresa extends Model
 {
     use HasFactory;
 
-    // Atributos que pueden ser asignados masivamente
+    /**
+     * Atributos asignables masivamente
+     */
     protected $fillable = [
         'nombre',
         'nit',
@@ -17,22 +38,21 @@ class Empresa extends Model
         'num_trabajadores',
         'ciudad',
         'direccion',
-        'user_id'
+        'user_id',
     ];
 
-    //Relación: una empresa puede tener muchas auditorías
-    public function auditorias()
+    public function auditorias(): HasMany
     {
         return $this->hasMany(Auditoria::class);
     }
 
-    public function estandars()
+    public function estandares(): HasMany
     {
         return $this->hasMany(Estandar::class);
     }
 
-    public function users()
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 }

@@ -8,33 +8,76 @@ use App\Models\Empresa;
 use Illuminate\Http\Request;
 use App\Services\TrabajoService;
 
+/**
+ * Controlador encargado de la gestión de trabajos.
+ *
+ * Este controlador maneja todas las operaciones CRUD relacionadas
+ * con los trabajos del sistema, incluyendo:
+ * - Listado de trabajos
+ * - Creación de trabajos con imágenes
+ * - Visualización de trabajos
+ * - Edición y actualización
+ * - Eliminación de trabajos
+ * - Eliminación de imágenes asociadas
+ *
+ * ARQUITECTURA:
+ * - Utiliza el patrón Service Layer (TrabajoService)
+ * - Mantiene el controlador limpio delegando la lógica de negocio
+ * - Sigue principios SOLID (Responsabilidad Única)
+ *
+ * RELACIONES:
+ * - Trabajo pertenece a una Empresa
+ * - Trabajo puede tener múltiples Imágenes
+ */
 class TrabajoController extends Controller
 {
-    //TODO Servicio para manejar la lógica de negocios relacionada con trabajos
+    /**
+     * Servicio encargado de la lógica de negocio de trabajos.
+    */
     protected $trabajoService;
 
-    //TODO Inyectar el servicio TrabajoService
+    /**
+     * Constructor del controlador.
+     * Inyecta el servicio TrabajoService mediante
+     * inyección de dependencias.
+     *
+     */
     public function __construct(TrabajoService $trabajoService)
     {
         $this->trabajoService = $trabajoService;
     }
 
-    //TODO Listar todos los trabajos
+    /**
+     * Mostrar la lista de todos los trabajos registrados.
+     *
+     * Carga los trabajos junto con su empresa asociada.
+    */
     public function index()
     {
         $trabajos = $this->trabajoService->listarTrabajos();
         return view('trabajos.index', compact('trabajos'));
     }
-    //TODO Mostrar el formulario para crear un nuevo trabajo
+
+    /**
+     * Mostrar el formulario para crear un nuevo trabajo.
+     *
+     * Obtiene todas las empresas para asociarlas al trabajo.
+    */
     public function create()
     {
         $empresas = Empresa::all();
         return view('trabajos.create', compact('empresas'));
     }
-    //TODO Almacenar un nuevo trabajo
+
+    /**
+     * Almacenar un nuevo trabajo en la base de datos.
+     *
+     * Valida los datos del formulario y las imágenes subidas
+     * antes de enviarlos al servicio para su procesamiento.
+    */
     public function store(Request $request)
     {
-        //Validación
+        // Validación de datos
         $data = $request->validate([
             'titulo' => 'required|string|max:255',
             'descripcion' => 'required|string',
@@ -44,22 +87,33 @@ class TrabajoController extends Controller
 
         $this->trabajoService->crearTrabajo($data, $request->file('imagens'));
 
-        return redirect()->route('trabajos.index')->with('success', 'Trabajo registrado correctamente.');
+        return redirect()->route('trabajos.index')
+            ->with('success', 'Trabajo registrado correctamente.');
     }
-    //TODO Mostrar un trabajo específico
+
+    /**
+     * Mostrar los detalles de un trabajo específico.
+    */
     public function show($id)
     {
         $trabajo = Trabajo::with('empresa')->findOrFail($id);
         return view('trabajos.show', compact('trabajo'));
     }
-    //TODO Mostrar el formulario para editar un trabajo existente
+
+    /**
+     * Mostrar el formulario de edición de un trabajo.
+    */
     public function edit($id)
     {
         $trabajo = Trabajo::findOrFail($id);
         $empresas = Empresa::all();
+
         return view('trabajos.edit', compact('trabajo', 'empresas'));
     }
-    //TODO Actualizar un trabajo existente
+
+    /**
+     * Actualizar un trabajo existente.
+    */
     public function update(Request $request, $id)
     {
         $data = $request->validate([
@@ -70,19 +124,35 @@ class TrabajoController extends Controller
         ]);
 
         $trabajo = Trabajo::findOrFail($id);
-        $this->trabajoService->actualizarTrabajo($trabajo, $data, $request->file('imagens'));
 
-        return redirect()->route('trabajos.show', $trabajo->id)->with('success', 'Trabajo actualizado correctamente.');
+        $this->trabajoService->actualizarTrabajo(
+            $trabajo,
+            $data,
+            $request->file('imagens')
+        );
+
+        return redirect()->route('trabajos.show', $trabajo->id)
+            ->with('success', 'Trabajo actualizado correctamente.');
     }
-    //TODO Eliminar un trabajo y sus imágenes asociadas
+
+    /**
+     * Eliminar un trabajo y sus imágenes asociadas.
+    */
     public function destroy($id)
     {
         $trabajo = Trabajo::findOrFail($id);
         $this->trabajoService->eliminarTrabajo($trabajo);
 
-        return redirect()->route('trabajos.index')->with('success', 'Trabajo eliminado correctamente.');
+        return redirect()->route('trabajos.index')
+            ->with('success', 'Trabajo eliminado correctamente.');
     }
-    //TODO Eliminar una imagen específica asociada a un trabajo
+
+    /**
+     * Eliminar una imagen específica asociada a un trabajo.
+     *
+     * Elimina tanto el archivo físico del almacenamiento
+     * como el registro en la base de datos.
+    */
     public function destroyImagen($id)
     {
         $imagen = Imagen::findOrFail($id);

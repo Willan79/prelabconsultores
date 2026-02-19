@@ -1,5 +1,19 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Servicio: EstandarService
+|--------------------------------------------------------------------------
+| Capa de lógica de negocio para la gestión de estándares/documentos.
+|
+| Responsabilidades:
+| - Obtener estándares por empresa o por usuario autenticado
+| - Gestionar subida de archivos al storage público
+| - Controlar descargas seguras de documentos
+| - Eliminar registros y archivos físicos asociados
+|--------------------------------------------------------------------------
+*/
+
 namespace App\Services;
 
 use App\Models\Estandar;
@@ -8,14 +22,14 @@ use Illuminate\Support\Facades\Storage;
 
 class EstandarService
 {
-    //TODO Obtener estándares por empresa
+    // Obtener estándares por empresa
     public function obtenerPorEmpresa($empresa_id)
     {
         $empresa = Empresa::findOrFail($empresa_id);
         $estandares = Estandar::where('empresa_id', $empresa_id)->get();
         return compact('empresa', 'estandares');
     }
-    //TODO Obtener estándares para el usuario autenticado
+    // Obtener estándares para el usuario autenticado
     public function obtenerPorUsuario($user)
     {
         $empresa = $user->empresa;
@@ -25,7 +39,7 @@ class EstandarService
         $estandares = Estandar::where('empresa_id', $empresa->id)->get();
         return compact('empresa', 'estandares');
     }
-    //TODO Subir un nuevo estándar
+    // Subir un nuevo estándar
     public function subirArchivo($request, $empresa_id, $user_id)
     {
         $archivo = $request->file('estandar');
@@ -39,7 +53,7 @@ class EstandarService
             'user_id' => $user_id,
         ]);
     }
-    //TODO Descargar un estándar
+    // Descargar un estándar
     public function descargar($empresa_id, $id, $user = null)
     {
         $query = Estandar::where('empresa_id', $empresa_id);// Si $empresa_id es null, no se filtra por empresa
@@ -60,7 +74,7 @@ class EstandarService
 
         return Storage::download($ruta, $estandar->nombre); // Descarga el archivo con el nombre original
     }
-    //TODO Eliminar un estándar
+    // Eliminar un estándar
     public function eliminar($empresa_id, $id)
     {
         $estandar = Estandar::where('empresa_id', $empresa_id)->findOrFail($id);
