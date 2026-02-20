@@ -11,14 +11,14 @@
 | - Uso de Bootstrap 5 para layout responsive.
 |--------------------------------------------------------------------------
 --}}
-
+{{-- Backend --}}
 @extends('layouts.app_admin')
 
 @section('titulo')
     - Crear auditoría
 @endsection
 
-@section('contenido')
+@section('contenido') 
     <main class="container magen-top d-flex justify-content-center">
 
         <article class="card shadow-lg col-md-10 col-lg-6 mb-2" id="login-bg">
