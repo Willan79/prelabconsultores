@@ -4,12 +4,18 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
+/*
+El Kernel de Laravel es la clase central que maneja todas las solicitudes HTTP entrantes a la aplicación.
+Actúa como un intermediario entre el servidor web y la aplicación Laravel, procesando cada solicitud y determinando cómo debe ser manejada.
+El Kernel se encarga de registrar y ejecutar los middleware, que son componentes que pueden inspeccionar y modificar las solicitudes y respuestas HTTP.
+Además, el Kernel define los grupos de middleware y las rutas que se aplican a diferentes partes de la aplicación
+*/
 class Kernel extends HttpKernel
 {
     /**
-     * The application's global HTTP middleware stack.
+     * La pila de middleware HTTP global de la aplicación.
      *
-     * These middleware are run during every request to your application.
+     * Estos middleware se ejecutan durante cada solicitud a su aplicación.
      *
      * @var array<int, class-string|string>
      */
@@ -24,7 +30,7 @@ class Kernel extends HttpKernel
     ];
 
     /**
-     * The application's route middleware groups.
+     * Los grupos de middleware de rutas de la aplicación.
      *
      * @var array<string, array<int, class-string|string>>
      */
@@ -46,9 +52,9 @@ class Kernel extends HttpKernel
     ];
 
     /**
-     * The application's route middleware.
+     * El middleware de rutas de la aplicación.
      *
-     * These middleware may be assigned to groups or used individually.
+     * Estos programas intermedios pueden asignarse a grupos o utilizarse individualmente.
      *
      * @var array<string, class-string|string>
      */
@@ -65,6 +71,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'role' => \App\Http\Middleware\RoleMiddleware::class,
-        
+
     ];
 }
